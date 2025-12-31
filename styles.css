@@ -1,0 +1,124 @@
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.9rem;
+  align-items: stretch;
+}
+
+.photo-grid a {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  transition: transform .25s ease, filter .25s ease;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.03);
+  filter: brightness(1.03);
+}
+
+@media (max-width: 600px) {
+  .photo-grid img { height: 120px; }
+}
+@media (max-width: 400px) {
+  .photo-grid img { height: 100px; }
+}
+
+
+
+/* space between bibliography entries (covers common citeproc output variants) */
+.references.csl-bib-body .csl-entry,
+.csl-bib-body .csl-entry,
+ol.csl-bib-list > li.csl-entry,
+div.csl-entry {
+  margin-bottom: 1.25rem;   /* increase this to add more vertical space */
+  padding-bottom: 0.25rem;  /* optional visual breathing room */
+}
+
+/* optional: add a subtle divider if you want clearer separation */
+.references.csl-bib-body .csl-entry + .csl-entry,
+ol.csl-bib-list > li.csl-entry + li.csl-entry {
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 0.75rem;
+}
+
+
+/* force visible numbers for bibliography entries */
+.csl-bib-body { counter-reset: pubnum; }
+.csl-bib-body .csl-entry {
+  counter-increment: pubnum;
+  display: block;
+  margin-bottom: 1.25rem;
+  padding-left: 2.4rem;
+  position: relative;
+}
+.csl-bib-body .csl-entry::before {
+  content: counter(pubnum) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 600;
+  color: var(--quarto-text-foreground);
+}
+
+/* Teaching page styles (moved from inline) */
+.teaching-container { margin: 0; padding: 0 0.25rem; }
+.teaching-institution { margin: 1.25rem 0 2rem 0; }
+.teaching-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.35rem; }
+.teaching-list li {
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  background: var(--quarto-card-background);
+  display:flex;
+  gap:0.75rem;
+  align-items:baseline;
+}
+.teaching-year { min-width: 10.5rem; font-weight:600; color:var(--quarto-text-muted); }
+.course-entry { flex:1; }
+.course-entry a { color: var(--quarto-link-color); text-decoration: none; font-weight:600; }
+.course-meta { color: var(--quarto-text-muted); font-size:0.95rem; margin-top:0.15rem; }
+.anchor-nav { margin-bottom: 1rem; display:flex; flex-wrap:wrap; gap:0.5rem; }
+.anchor-nav a {
+  padding:0.35rem 0.6rem;
+  background:var(--quarto-card-background);
+  border-radius:6px;
+  text-decoration:none;
+  color:var(--quarto-text-foreground);
+  font-weight:600;
+}
+.back-to-top { display:inline-block; margin-top:0.5rem; font-size:0.9rem; color:var(--quarto-text-muted); text-decoration:none; }
+
+/* compact line-height for the chronological list */
+.teaching-list li { line-height: 1.2rem; }
+
+/* small screens: stack year above entry */
+@media (max-width:720px){
+  .teaching-list li { flex-direction:column; align-items:flex-start; }
+  .teaching-year { min-width: auto; margin-bottom: 0.25rem; }
+}
+
+/* Optional subtle divider between institutions */
+.teaching-section + .teaching-section { margin-top: 1.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(0,0,0,0.04); }
+
+
+
+.post-meta {
+  font-size: 0.9em;
+  color: var(--bs-secondary-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.post-meta strong {
+  color:var(--quarto-text-foreground);
+}

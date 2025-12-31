@@ -1,0 +1,18 @@
+---
+title: "Papers"
+description-meta: "Listing of my publications."
+back-to-top-navigation: true
+title-block-banner: false
+css: style.css
+
+
+
+bibliography: "./publications.bib"    # adjust path to where your .bib lives
+nocite: "@*"                           # include every entry in the .bib
+---
+
+
+::: {#refs}
+:::
+
+

@@ -1,0 +1,151 @@
+---
+title: "Square Roots and Where to Find Them"
+description: "A tutorial on computing square roots by hand"
+author: "Andrew Ortegaray"
+date: "2025-12-30"
+categories: [blog, math, tutorial] 
+image: "method_comparison.png"
+#css: /style.css
+#draft: true
+---
+
+::: {.post-meta}
+**Reading time:** {{< meta read_time >}}  
+**Math content:** {{< meta math_count >}}
+:::
+
+First post of the blog, woo! I thought it would be nice to have a warm-up post about something fun, but also that I haven't seen mentioned much (maybe for good reason). The goal of today's post is how to compute square roots **exactly** by hand, digit-by-digit, no funny business. It looks something like this:
+
+\begin{array}{r|l}
+S&  \phantom{0}2.\phantom{0}2\ \\
+ \hline
+\, & 05.00 \\
+    2\cdot\underline{2}       & \underline{\phantom{0}4\,\,} \\
+                                & \phantom{0}1\phantom{.}00 \\
+(40+2)\cdot \underline{2}  & \phantom{0}\underline{\phantom{5.} 84\,\,}\\
+                                & \phantom{05.}16\\
+\end{array}
+
+
+
+
+
+
+The method is reminiscient of long-division and if that is a trigger then just a warning: it potentially gets a little bit more involved. Still, I think this method is worth talking about from a post-apocalyptic-all-computers-are-destroyed-but-we-still-need-square-roots-for-some-reason perspective. Admittedly, you would want to use a Newton-like method or something else for practical approximations, but this still only involves integer arithmetric and avoids integer division entirely.
+
+
+## Approximate Methods (A Prelude)
+Now, to get us potentially interested in this at all, let's look at what we might first do if we needed a rough square root by hand: taylor expansion. Specifically, we could expand a square root of almost a perfect square, say $50$ or $145$. For example, for $\sqrt{50}$ we would wish to evaluate $f(1)$ for the function
+$$f(x) = \sqrt{7^2 + x} $$
+The Taylor expansion around $x=0$ to leading order is
+$$ f(x) =\sqrt{7^2 + x} = 7 + \frac{x}{2 \cdot 7} + O(x^2) $$
+We then acquire the approximation
+$$ \sqrt{50} = f(1) \approx 7 + \frac{1}{14}  = 7.07142\ldots $$
+which is pretty close to the real value of $7.07106\ldots$
+
+Generally, around a perfect square $n^2$, we have the approximation
+$$ \sqrt{n^2 + x} \approx n + \frac{x}{2n} $$
+
+Another method sometimes called the Babylonian method (derived from Newton's method), is an iterative method that starts with some guess $x_0$ to the square root of a number $N$ and then improves that guess using the update rule:
+$$ x_{n+1} = \frac{1}{2}\left(\frac{N}{x_n} + x_n \right)$$
+This method isn't perfect, but it converges rapidly. Every iteration of this method roughly doubles the number of digits of accuracy while while every iteration of the proceeding digit-by-digit method only provides one additional digit of accuracy. Here is the comparison for the computation of $\sqrt{2}$ starting at $x_0=1$.
+
+![](method_comparison.png)
+
+## Exact Method: Digit-by-Digit
+The digit-by-digit method is a manual algorithm for finding square roots. It involves grouping the digits of the number in pairs (starting from the decimal point) and using an integer inequality to find the largest square (up to a power of $100$) less than the target number. This process is repeated for each subsequent group of digits. The following steps outline this process:
+
+### Steps
+Throughout the process, there are two integers you need to keep track of: the square root $S$ and a remainder $R$. 
+
+1. Group the digits of the number in pairs, starting from the decimal point.
+2. Find the largest digit whose square is less than or equal to the first pair. This is the first digit of the square root $S$ (without the decimal point).
+3. Subtract the square of $S$ from the first pair, then append the next pair of digits, creating a remainder $R$.
+4. Double the current result $S$ and find the next digit $d$ that, when appended to the doubled result and multiplied by it, is less than or equal to the current remainder $R$:
+$$(20S + d) \cdot d \leq R$$
+5. Update $S$ by appending $d$ to it, update the remainder $R$ by subtracting $(20S + d) \cdot d$ from it and appending the next pair of digits. 
+6. Repeat from step 4 until the desired precision is achieved.
+
+
+
+### Example: Finding $\sqrt{5}$
+Let's find the square root of $5$ using this method.
+
+1. Group the digits of $5$ into pairs around the decimal point (adding pairs 00 for each additional digit of precision desired):
+$$05\,.\,00\,00\,00$$
+
+2. The largest digit whose square is less than or equal to $5$ is $\boxed{2}$ (since $2^2 = 4<5$), so we set $S=2$.
+3. Subtract $4$ from $5$, leaving a remainder of $1$. We bring down the next pair of digits ($00$), making our current remainder $R=100$.
+4. Double the current result $S=2$ to get $4$. Now, we need to find the next digit. We look for a digit $d$ such that 
+$$(40 + d) \cdot d \leq 100$$
+The largest digit that satisfies this is $\boxed{2}$ since $42 \cdot 2 = 84 < 100$, so we set $S = 22$.
+5. Subtract $84$ from $100$, leaving a remainder of $16$. Bring down the next pair of digits ($00$), making our remainder $R=1600$.
+6. Double the current result $S=22$ to get $44$. We need to find the next digit $d$ such that $(440 + d) \cdot d \leq 1600$. The largest digit that satisfies this is $\boxed{3}$ since $(440+3) \cdot 3 = 1329 < 1600$. 
+7. Continuing this process, we find the next digits to be $6$, $0$, and so on.
+
+We can compactly write out this method in a long-division-like format like we saw earlier in the post. We read the table from top to bottom and keep track of the work of finding digits (underlined) on the left.
+
+
+
+\begin{array}{r|l}
+S&  \phantom{0}2.\phantom{0}2\,\phantom{0}3\,\phantom{0}6 \\
+ \hline
+\, & 05.00\,00\,00 \\
+    2\cdot\underline{2}       & \underline{\phantom{0}4\,\,} \\
+                                & \phantom{0}1\phantom{.}00 \\
+(40+2)\cdot \underline{2}  & \phantom{0}\underline{\phantom{5.} 84\,\,}\\
+                                & \phantom{05.}16\,00 \\
+(440+3)\cdot \underline{3}   & \phantom{05.}\underline{13\,29\,} \\
+                                & \phantom{05.0}2\,71\,00 \\
+(4460+6)\cdot \underline{6}  & \phantom{05.0}\underline{2\,67\,96\,} \\
+                                & \phantom{05.00\,0}3\,04\\
+\end{array}
+
+
+### Example: Finding $\sqrt{50}$ and $\sqrt{\pi}$
+Here are two more examples. The second one in particular demonstrates it is no harder to take squares roots of arbitrary real numbers.
+
+
+\begin{array}{r|l}
+S&  \phantom{0}7.\phantom{0}0\,\phantom{0}7\,\phantom{0}1 \\
+ \hline
+\, & 50.00\,00\,00 \\
+    7\cdot\underline{7}       & \underline{49\,\,} \\
+                                & \phantom{0}1\phantom{.}00 \\
+(140+0)\cdot \underline{0}  & \phantom{0}\underline{\phantom{5.0} 0\,\,}\\
+                                & \phantom{0}1\phantom{.}00\,00 \\
+(1400+7)\cdot \underline{7}   & \phantom{0}\underline{\phantom{1.}98\,49\,} \\
+                                & \phantom{05.0}1\,51\,00 \\
+(14140+1)\cdot \underline{1}  & \phantom{05.0}\underline{1\,41\,41\,}  \\
+                                & \phantom{05.00\,0}0\,59\\
+\end{array}
+
+
+
+\begin{array}{r|l}
+S&  \phantom{0}1.\phantom{0}7\,\phantom{0}7\,\phantom{0}2 \\
+ \hline
+\, & 03.14\,15\,92\cdots \\
+    1\cdot\underline{1}       & \underline{\phantom{0}1\,\,} \\
+                                & \phantom{0}2\phantom{.}14 \\
+(20+7)\cdot \underline{7}  & \phantom{0}\underline{1\phantom{.} 89\,\,}\\
+                                & \phantom{05.}25\,15 \\
+(340+7)\cdot \underline{7}   & \phantom{05.}\underline{24\,29\,} \\
+                                & \phantom{05.00\,}86\,92 \\
+(3540+2)\cdot \underline{2}  & \phantom{05.02\,}\underline{70\,80\,} \\
+                                & \phantom{05.00\,}16\,12\\
+\end{array}
+
+
+## Notes
+
+The digit-by-digit technique here is a little silly, but the principle behind it is reminiscient of the [truncation that Netz Katz discussed](https://academicweb.nd.edu/~andyp/teaching/2020FallMath10850/KatzCranks.pdf) in the real analysis-like material he taught for the classic Ma 1a class at Caltech.
+
+
+
+
+<!--Include comments-->
+{{< include /files/includes/_comments.qmd >}}
+
+<!--Include social share buttons-->
+{{< include /files/includes/_socialshare.qmd >}}

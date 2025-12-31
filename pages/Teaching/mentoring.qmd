@@ -1,0 +1,62 @@
+---
+title: "Mentoring Projects"
+
+css: ../../styles.css
+toc: true
+toc-depth: 2
+---
+
+
+
+
+::: {.teaching-container}
+
+
+::: {.teaching-list .teaching-section}
+
+
+- 
+  <div class="teaching-year"> 2025-2026</div>
+
+  <div class="course-entry">
+  [UCSB DRP 2026](https://www.ucsbdrp.org)
+
+
+  <div class="course-meta"> 
+    **Topics**: See my profile [here](https://www.ucsbdrp.org/mentorprofiles.html) for potential topics.  <br>
+    **Mentees**: TBD <br>
+    <!-- [**Project Poster**](drp_2024_poster.pdf) <br> -->
+
+  </div>  
+
+
+
+- 
+  <div class="teaching-year"> 2024-2025</div>
+
+
+
+  <div class="course-entry">
+  Summer 2025 REU
+
+
+  <div class="course-meta"> 
+    **Topics**: Quantum Error Correction, 4D Homology Codes  <br>
+    **Mentees**: Faizan Hussaini and Mingxin Du and Samyak Jain <br>
+    <!-- [**Project Poster**](drp_2024_poster.pdf) <br> -->
+
+  </div>  
+
+
+  <div class="course-entry">
+  [UCSB DRP 2025](https://www.ucsbdrp.org/assets/files/2025/2025_All_Posters.pdf)
+
+
+  <div class="course-meta"> 
+    **Topics**: Persistent Homology <br>
+    **Mentees**: Luke Crossley <br>
+    [**Project Poster**](drp_2024_poster.pdf) <br>
+
+  </div>  
+  </div>
+

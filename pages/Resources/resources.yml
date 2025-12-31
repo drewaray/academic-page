@@ -1,0 +1,180 @@
+
+- title: "NSF Graduate Research Fellowship"
+  url: "https://www.nsfgrfp.org/"
+  audience: "Graduate"
+  type: "Funding"
+  notes: "Major US graduate fellowship."
+
+- title: "For potential PhD students"
+  url: "https://math.stanford.edu/~vakil/potentialstudents.html"
+  audience: "Undergrad/Graduate"
+  type: "Advice"
+  notes: "Now classic advice from Ravi Vakil on grad school."
+
+- title: "Pi-Base"
+  url: "https://topology.pi-base.org"
+  audience: "General"
+  type: "Math"
+  notes: "A modern day companion to Counterexamples in Topology."
+
+
+- title: "Funding is all you need..."
+  url: "https://www.lesswrong.com/posts/Sq75dZniBctPyTrWX/funding-is-all-you-need-getting-into-grad-school-by-hacking"
+  audience: "Undergrad"
+  type: "Advice"
+  notes: "Perspective on grad school applications from a non-traditional angle."
+
+- title: "SUBgroups"
+  url: "https://gradsubgroups.org/"
+  audience: "Graduate"
+  type: "Mentorship/Community"
+  notes: "Peer groups for first year grad students."
+
+
+- title: "EDGE Research Fund for Women"
+  url: "https://www.edgeforwomen.org/the-mary-beth-ruskai-research-fund-for-women/"
+  audience: "General"
+  type: "Funding"
+  notes: "Funding for women in the mathematical sciences. $5000 award."
+
+- title: "Lathisms Scholarship"
+  url: "https://www.lathisms.org/scholarships"
+  audience: "Undergrad/Graduate"
+  type: "Funding"
+  notes: "Scholarship for Latinx/Hispanic students in the mathematical sciences. $500 award."
+
+
+- title: "MSRI-UP"
+  url: "https://www.slmath.org/msri-up"
+  audience: "Undergrad"
+  type: "Summer Program"
+  notes: "Summer research program for undergrads at SLMath in Berkeley, CA."
+
+- title: "Keith Conrad's Website"
+  url: "https://kconrad.math.uconn.edu/"
+  audience: "General"
+  type: "Math"
+  notes: "Includes a large fantastic collection of handouts."
+
+- title: "Brian Conrad's Website"
+  url: "https://virtualmath1.stanford.edu/~conrad/"
+  audience: "General"
+  type: "Math"
+  notes: "Includes a large fantastic collection of handouts."
+
+
+- title: "Polymath Jr REU"
+  url: "https://geometrynyc.wixsite.com/polymathreu"
+  audience: "Undergrad"
+  type: "Summer Program"
+  notes: "Online Summer math research program for undergrads."
+
+- title: "GTA Philadelphia"
+  url: "https://cst.temple.edu/department-mathematics/events/gta-philadelphia"
+  audience: "Graduate"
+  type: "Conference"
+  notes: "Gradute student conference in Temple University, Philadelphia, PA."
+
+- title: "GOALS"
+  url: "https://users.math.msu.edu/users/banelson/conferences/GOALS.html"
+  audience: "Graduate"
+  type: "Summer Program"
+  notes: "Graduate Summer school in operator algebras."
+
+- title: "Atlantic TQFT Spring School"
+  url: "https://categorified.net/TQFT2025/"
+  audience: "Graduate"
+  type: "Summer Program"
+  notes: "Graduate spring school in TQFTs at the University of New Brunswick, Fredericton."
+
+
+- title: "Bridging the Dream Scholarship"
+  url: "https://www.salliemae.com/landing/bridging-the-dream-for-graduates/"
+  audience: "Graduate"
+  type: "Funding"
+  notes: "Scholarship for graduate students. Around $10,000 award."
+
+- title: "MathMeetings"
+  url: "https://mathmeetings.net/"
+  audience: "General"
+  type: "Conference"
+  notes: "Listing of upcoming math conferences worldwide."
+  
+- title: "Google PhD Fellowship"
+  url: "https://research.google/programs-and-events/phd-fellowship/"
+  audience: "Graduate"
+  type: "Funding"
+  notes: "Fellowship for PhD students in computational fields. 2 year award (in US)."
+
+
+- title: "UCSB IPS Grant"
+  url: "https://gradpost.ucsb.edu/ips-program"
+  audience: "Graduate/Postdoc"
+  type: "Funding"
+  notes: "Grant for external professional development in tech (UCSB only). Up to $1200 award."
+
+- title: "AMS Travel Grants"
+  url: "https://www.ams.org/grants-awards/travel-grants/grad-students/emp-student-JMM"
+  audience: "Graduate"
+  type: "Funding"
+  notes: "Travel grants for graduate students to attend the Joint Mathematics Meetings (JMM) and AMS sectional meetings."
+
+
+- title: "UCSB Bridge to the Doctorate Program"
+  url: "https://bd.csep.ucsb.edu/"
+  audience: "Undergrad"
+  type: "Funding"
+  notes: "Funding and mentorship program for STEM undergraduates transitioning to graduate school (UCSB only)."
+
+- title: "The MaC Fund"
+  url: "https://afieldguidetomath.wordpress.com/2025/01/27/updated-mac-fund-the-mathandcobb-fund-for-mathematical-activities/"
+  audience: "General"
+  type: "Funding"
+  notes: "Small fun grants for math activities by Professor Álvaro Lozano-Robledo. Awards fluxuate around $200."
+
+
+- title: "UCSB Central Campus Fellowships"
+  url: "https://www.graddiv.ucsb.edu/our-services/central-campus-fellowships"
+  audience: "Graduate"
+  type: "Funding"
+  notes: "Fellowships for continuing UCSB graduate students (UCSB only)."
+
+- title: "AMS Mathematics Opportunities Listing"
+  url: "https://www.ams.org/opportunities?utm_source=Informz&utm_medium=email&utm_campaign=Informz%20Mailing&_zs=uxK3S1&_zl=HR1r7"
+  audience: "General"
+  type: "Various"
+  notes: "Listing of various math opportunities by the AMS."
+
+
+
+- title: "Simons Dissertation Fellowship"
+  url: "https://www.simonsfoundation.org/grant/simons-dissertation-fellowship-in-mathematics/"
+  audience: "Graduate"
+  type: "Funding"
+  notes: "Fellowship for PhD students in their fourth and fith years. Must apply in the third year. $38,000 award."
+
+
+- title: "GEM Fellowship Program"
+  url: "https://www.gemfellowship.org/gem-fellowship-program/#a"
+  audience: "Undergrad"
+  type: "Funding"
+  notes: "Graduate School Fellowship paired with Summer internships. 5 year award."
+
+
+- title: "UCSB Directed Reading Program"
+  url: "https://www.ucsbdrp.org/"
+  audience: "Undergrad"
+  type: "Mentorship/Research"
+  notes: "Undergraduate research program guided by graduate student mentors during the academic year (UCSB only)."
+
+- title: "UCSB Math Qual Repository"
+  url: "https://drive.google.com/drive/folders/0B1v4A0GzFvfHTnZRaFVDaks5R1E?resourcekey=0-3Fz_YPJ6nupoks3vq63X_w"
+  audience: "Graduate"
+  type: "Math"
+  notes: "Repository of previous years math qualification exams (UCSB only)."
+
+- title: "UCSB Math Qual Solutions Repository"
+  url: "https://drive.google.com/drive/folders/1JJx8CO8xx3tf6zUTlJOTkuVTpQo6U0Qd"
+  audience: "Graduate"
+  type: "Math"
+  notes: "Repository of solutions for previous years math qualification exams (UCSB only)."

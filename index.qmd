@@ -1,0 +1,89 @@
+---
+title: "Andrew Ortegaray (he/him/his)"
+description-meta: "Andrew Ortegaray's Personal Website"
+image: "files/images/profile.jpg"
+page-navigation: True
+toc: False
+sidebar: True
+page-layout: full
+
+about:
+  id: main_heading
+  template: solana
+  image-width: 60%
+  image-shape: rounded
+  image-alt: "Grabbing some yogurt at Little King in Santa Barbara, CA"
+  image-title: "Grabbing some yogurt at Little King in Santa Barbara, CA"
+  links:
+    - icon: envelope
+      text: E-mail
+      href: mailto:ortegaray@math.ucsb.edu    
+      target: _blank
+    - icon: github
+      text: Github
+      href: https://github.com/drewaray
+      target: _blank
+    - icon: bsky
+      text: Bluesky
+      href: https://bsky.app/profile/drewaray.bsky.social 
+      target: _blank
+    - icon: film
+      text: Letterboxd
+      href: https://letterboxd.com/drewaray/
+      target: _blank
+    - icon: spotify
+      text: Spotify
+      href: https://open.spotify.com/user/drewaray
+      target: _blank
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/drewaray/
+      target: _blank
+    - text: "{{< ai orcid >}} ORCID"   # use academic icons, "" are needed, you also need to install the fontawesome extension
+      href: https://orcid.org/0009-0009-6516-3680
+      target: _blank
+    - text: "{{< ai google-scholar >}} Google Scholar"
+      href: https://scholar.google.com/citations?user=cs1huCUAAAAJ&hl=en
+      target: _blank
+
+
+listing:
+  - id: recent-posts
+    contents: 
+      - pages/Math/blog/posts
+    exclude:
+      title: ""
+    type: grid
+    max-items: 3
+    image-height: clamp(5rem, 8rem, 10vw)
+    page-size: 3
+    fields: [image, date, title, description]
+    max-description-length: 75
+    sort: 
+      - "date desc"
+      - "title asc"
+
+
+---
+
+:::{#main_heading}
+<!-- <style>
+#main_heading {
+  font-size: clamp(2.5rem, 2.5rem, 3vw);
+  line-height: 1.5;
+}
+</style> -->
+
+
+
+:::
+
+
+<!-- Delete the following section and delete corresponding lines in the yaml part to remove the recent posts -->
+<!-- ## Recent Posts
+Check out the latest &nbsp;[Papers](posts.qmd#category=paper)&nbsp;, &nbsp;[News](posts.qmd#category=news)&nbsp;, &nbsp;[Events](posts.qmd#category=event)&nbsp;, and &nbsp;[More »](/posts.qmd) -->
+
+:::{#recent-posts}
+:::
+
+<!-- <p align="right">[All Posts »](/posts.qmd)</p> -->

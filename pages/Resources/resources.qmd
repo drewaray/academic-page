@@ -1,0 +1,158 @@
+--- 
+title: "Resources"
+page-layout: full
+execute:
+  echo: true
+
+
+
+
+
+---
+These are some resources and readings that I've encountered that may be useful for students in mathematics and related fields. I've saved a random assortment of these over the years and so compiling this table is somewhat an exercise in cleaning up my own bookmarks! 
+
+
+---
+
+
+```{python}
+#| echo: false
+#| results: asis
+from pathlib import Path
+import yaml, html
+from IPython.display import Markdown
+
+# locate resources.yml (same strategy as before)
+cwd = Path.cwd()
+candidates = [cwd / "resources.yml", cwd / "data" / "resources.yml", cwd.parent / "resources.yml"]
+datafile = next((p for p in candidates if p.exists()), candidates[0])
+
+if not datafile.exists():
+    raise FileNotFoundError("resources.yml not found. Searched: " + ", ".join(str(p) for p in candidates))
+
+with open(datafile, encoding="utf-8") as fh:
+    items = yaml.safe_load(fh) or []
+
+# infer all keys across items
+all_keys = set()
+for it in items:
+    all_keys.update(it.keys())
+
+# prefer these columns (if present) and then append any remaining keys sorted
+preferred_order = [
+    "title", "organization", "audience", "stage", "type", "deadline",
+    "location", "duration", "stipend", "tags", "notes", "apply_url", "url",
+    "id", "last_updated"
+]
+# build ordered list
+ordered = []
+for k in preferred_order:
+    if k in all_keys:
+        ordered.append(k)
+        all_keys.remove(k)
+# append leftover keys alphabetically
+ordered += sorted(all_keys)
+
+# if title exists, prefer linking the title and drop raw url/apply_url columns
+if "title" in ordered:
+    ordered = [k for k in ordered if k not in ("url", "apply_url")]
+
+# helper to stringify cell values
+def render_value(v):
+    if v is None:
+        return ""
+    if isinstance(v, list):
+        # join lists; if list items are dicts, stringify
+        parts = []
+        for x in v:
+            if isinstance(x, dict):
+                parts.append(", ".join(f"{html.escape(str(a))}: {html.escape(str(b))}" for a,b in x.items()))
+            else:
+                parts.append(html.escape(str(x)))
+        return ", ".join(parts)
+    if isinstance(v, dict):
+        return ", ".join(f"{html.escape(str(a))}: {html.escape(str(b))}" for a,b in v.items())
+    return html.escape(str(v))
+
+# build table HTML
+rows = []
+# include DataTables CSS + small styles (keep from previous chunk)
+rows.append('''<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"/>
+<style>
+  #resources-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+  #resources-table th, #resources-table td { padding: 0.5rem 0.75rem; vertical-align: top; }
+  #resources-table th { background: rgba(0,0,0,0.04); font-weight: 600; text-align: left; }
+  #resources-table td.title { max-width: 28rem; white-space: normal; }
+  .resource-notes { color: #444; font-size: 0.95rem; }
+  .small-muted { color: #666; font-size: 0.9rem; }
+  a.resource-link { color: #0b66c3; text-decoration: none; }
+  a.resource-link:hover { text-decoration: underline; }
+</style>''')
+
+rows.append('<div class="table-responsive">')
+rows.append('<table id="resources-table" class="display" style="width:100%">')
+rows.append('<thead>')
+# header row (prettify column names)
+header_cells = []
+for k in ordered:
+    label = k.replace("_", " ").title()
+    header_cells.append(f"<th>{html.escape(label)}</th>")
+rows.append("<tr>" + "".join(header_cells) + "</tr>")
+rows.append('</thead>')
+rows.append('<tbody>')
+
+for it in items:
+    rows.append("<tr>")
+    for k in ordered:
+        # special handling for title -> make it a link if apply_url/url present
+        if k == "title":
+            title_text = html.escape(it.get("title", "Untitled"))
+            apply_url = it.get("apply_url") or ""
+            url = it.get("url") or ""
+            link = apply_url or url or ""
+            if link:
+                title_html = f'<a class="resource-link" href="{html.escape(link)}" target="_blank" rel="noopener">{title_text}</a>'
+                # if both apply_url and url present and differ, show small helper
+                extra = ""
+                if it.get("apply_url") and it.get("url") and it.get("apply_url") != it.get("url"):
+                    extra = f' <br><span class="small-muted"><a href="{html.escape(it.get("url"))}" target="_blank" rel="noopener">info</a> • <a href="{html.escape(it.get("apply_url"))}" target="_blank" rel="noopener">apply</a></span>'
+                cell = title_html + extra
+            else:
+                cell = title_text
+            rows.append(f"<td class='title'>{cell}</td>")
+            continue
+
+        value = it.get(k, "")
+        cell_html = render_value(value)
+        rows.append(f"<td>{cell_html}</td>")
+
+    rows.append("</tr>")
+
+rows.append('</tbody>')
+rows.append('</table>')
+rows.append('</div>')
+
+# include jQuery, DataTables JS, and initialization script
+rows.append('''
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  $('#resources-table').DataTable({
+    responsive: true,
+    pageLength: 10,
+    order: [[0,'asc'], [1, 'asc'], [2, 'asc']],
+    orderMulti: true,
+    columnDefs: [
+      { targets: [], orderable: true } // you can tweak to disable specific columns if desired
+    ],
+    language: { search: "Filter:" }
+  });
+});
+</script>
+''')
+
+res = "\n".join(rows)
+Markdown(res)
+```
+

@@ -1,0 +1,162 @@
+---
+title: "Courses Taught"
+
+title-block-banner: false
+css: ../../styles.css
+toc: true
+toc-depth: 2
+---
+
+Below are the courses I have taught over the years and material related to courses I'm currently teaching. Links to course materials are provided when available. 
+
+# For Current Students
+::: {.teaching-list .teaching-section}
+
+
+- 
+  <div class="teaching-year">Winter 25/26</div>
+  <div class="course-entry">
+  [MA4B: Differential Equations](#)
+
+  <div class="course-meta"> 
+    [Course Syllabus](#) | [Course Files](#)
+
+  </div>  
+
+  </div>
+:::
+
+## Contact & Support
+
+**Office Hours**: Mon 4-5 PM &nbsp; |  &nbsp; **Location**: SH 6431 $\mathbb{N}$
+
+Students are encouraged to attend office hours or schedule appointments for additional support.
+
+
+---
+
+
+
+# Course Archive
+
+
+### UC Santa Barbara {#uc-santa-barbara}
+
+::: {.teaching-container}
+::: {.teaching-list .teaching-section}
+
+
+- 
+  <div class="teaching-year">Fall 25/26</div>
+  <div class="course-entry">
+  [MA6B: Vector Calculus and Fourier Series](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+
+  </div>
+
+- 
+  <div class="teaching-year">Summer 24/25</div>
+  <div class="course-entry">
+  [MA6B: Vector Calculus and Fourier Series](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+
+  </div>
+
+- 
+  <div class="teaching-year">Spring 24/25</div>
+  <div class="course-entry">
+  [MA34B: Calculus for Social Sciences II](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+
+  </div>
+
+- 
+  <div class="teaching-year">Winter 24/25</div>
+  <div class="course-entry">
+  [MA3B: Calculus with Applications II](#)
+
+  <!-- <div class="course-meta">  </div>  -->
+
+  </div>
+
+- 
+  <div class="teaching-year">Fall 24/25</div>
+  <div class="course-entry">
+  [MA3A: Calculus with Applications I](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+
+  </div>
+
+:::
+:::
+
+
+### Caltech {#caltech}
+
+::: {.teaching-container}
+::: {.teaching-list .teaching-section}
+
+- 
+  <div class="teaching-year">Fall 19/20</div>
+  <div class="course-entry">
+  [Ma 5a: Group Theory](#)
+
+  <!-- <div class="course-meta">    -->
+  </div>
+
+- 
+  <div class="teaching-year">Summer 18/19</div>
+  <div class="course-entry">
+  [Ma 0: Introduction to Proofs](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+  </div>
+
+- 
+  <div class="teaching-year">Spring 18/19</div>
+  <div class="course-entry">
+  [Ph 2c: Intro Statistical Mechanics](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+  </div>
+
+- 
+  <div class="teaching-year">Winter 18/19</div>
+  <div class="course-entry">
+  [Ph 1b: Special Relativity and Intro E&M](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+  </div>
+
+- 
+  <div class="teaching-year">Fall 18/19</div>
+  <div class="course-entry">
+  [Ph 1a: Introductory Mechanics](#)
+
+  <!-- <div class="course-meta">  </div>  -->
+  </div>
+
+- 
+  <div class="teaching-year">Summer 17/18</div>
+  <div class="course-entry">
+  [Ma 0: Introduction to Proofs](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+  </div>
+
+- 
+  <div class="teaching-year">Spring 17/18</div>
+  <div class="course-entry">
+  [Ph 1c: Intermediate E&M](#)
+
+  <!-- <div class="course-meta">  </div>   -->
+  </div>
+
+:::
+:::
+
+

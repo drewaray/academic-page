@@ -1,0 +1,44 @@
+---
+title: "Square Roots and Where to Find Them"
+description: "A tutorial on computing square roots by hand"
+author: "Andrew Ortegaray"
+date: "2025-12-30"
+categories: [blog, math, tutorial] 
+image: "method_comparison.png"
+#css: /style.css
+draft: true
+---
+
+::: {.post-meta}
+**Reading time:** {{< meta read_time >}}  
+**Math content:** {{< meta math_count >}}
+:::
+
+Intro Intro Intro
+
+## Section 1
+
+
+## Section 2
+
+
+\begin{array}{r|l}
+S&  \phantom{0}2.\phantom{0}2\ \\
+ \hline
+\, & 05.00 \\
+    2\cdot\underline{2}       & \underline{\phantom{0}4\,\,} \\
+                                & \phantom{0}1\phantom{.}00 \\
+(40+2)\cdot \underline{2}  & \phantom{0}\underline{\phantom{5.} 84\,\,}\\
+                                & \phantom{05.}16\\
+\end{array}
+
+
+
+
+About the news
+
+<!--Include social share buttons-->
+{{< include /files/includes/_socialshare.qmd >}}
+
+<!--Include comments-->
+{{< include /files/includes/_comments.qmd >}}

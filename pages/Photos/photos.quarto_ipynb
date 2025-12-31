@@ -1,0 +1,76 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "--- \n",
+        "title: \"Photos\"\n",
+        "page-layout: full\n",
+        "execute:\n",
+        "    echo: True\n",
+        "lightbox:\n",
+        "  match: auto\n",
+        "  effect: fade\n",
+        "  desc-position: bottom\n",
+        "  loop: false\n",
+        "---\n",
+        "\n",
+        "A small gallery — click any image to open the full-size version.\n",
+        "\n",
+        "\n",
+        "<!-- "
+      ],
+      "id": "48d507e6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "results": "asis"
+      },
+      "source": [
+        "import glob, os\n",
+        "from IPython.display import Markdown\n",
+        "folder = \"./photography\"\n",
+        "exts = {\".jpg\",\".jpeg\",\".png\",\".gif\",\".webp\"}\n",
+        "imgs = sorted([p for p in glob.glob(os.path.join(folder,\"*\")) if os.path.splitext(p)[1].lower() in exts])\n",
+        "res = ''\n",
+        "for p in imgs:\n",
+        "    name = os.path.basename(p)\n",
+        "    name = name.split('.')[0]\n",
+        "    res +=   f'![{name}]({p}){{ group=\"gallery\" }} ' \n",
+        "    res += '\\n\\n'"
+      ],
+      "id": "a0ec9fbe",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        " -->\n",
+        "\n",
+        "<!-- :::{style=\"display: grid;grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));grid-gap: 1em;\"} -->\n",
+        "\n",
+        "::: {.photo-grid attributes=\"data-role='lightbox-gallery'\"}\n",
+        "\n",
+        "\n",
+        "`{python} Markdown(res)`\n",
+        "\n",
+        ":::"
+      ],
+      "id": "4484d574"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/andrewortegaray/Library/Python/3.9/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
