@@ -1,0 +1,41 @@
+--- 
+title: "Photos"
+page-layout: full
+execute:
+    echo: True
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+---
+
+A small gallery — click any image to open the full-size version.
+
+
+<!-- 
+```{python}
+#| results: asis
+import glob, os
+from IPython.display import Markdown
+folder = "./photography"
+exts = {".jpg",".jpeg",".png",".gif",".webp"}
+imgs = sorted([p for p in glob.glob(os.path.join(folder,"*")) if os.path.splitext(p)[1].lower() in exts])
+res = ''
+for p in imgs:
+    name = os.path.basename(p)
+    name = name.split('.')[0]
+    res +=   f'![{name}]({p}){{ group="gallery" }} ' 
+    res += '\n\n'
+
+```
+ -->
+
+<!-- :::{style="display: grid;grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));grid-gap: 1em;"} -->
+
+::: {.photo-grid attributes="data-role='lightbox-gallery'"}
+
+
+`{python} Markdown(res)`
+
+:::

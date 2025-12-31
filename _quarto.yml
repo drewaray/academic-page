@@ -1,0 +1,129 @@
+project:
+  type: website
+  output-dir: docs
+
+# Meta
+description-meta: "Andrew Ortegaray's Personal Website"
+author-meta: "Andrew Ortegaray"
+
+website:
+  title: "Andrew Ortegaray"
+  image: "files/images/gunter.png"
+  description: "Andrew Ortegaray's Personal Website"
+
+  page-navigation: true
+  favicon: "files/images/gunter.png"  # Add your own favicon to the files/images folder and change the name here
+  twitter-card: true 
+  site-path: "/"
+  site-url: "https://web.math.ucsb.edu/~ortegaray/"
+  reader-mode: true
+
+  draft-mode: unlinked
+  
+  open-graph: true
+
+
+
+
+
+
+
+
+  navbar:
+    background: dark  # You can change the background color here
+    foreground: success  # You can change the foreground color here
+
+    left:   # You can comment out all navigation items here if you just like to keep the index page only
+#      - text: Home
+#        href: index.qmd
+      - text: About
+        menu:
+          - text: About Me
+            href: pages/About/about.qmd
+          - text: CV
+            href: files/CV.pdf
+            icon: file-pdf
+            target: _blank
+      - text: Math
+        menu:
+          - text: Papers
+            href: pages/Math/papers/publications.qmd
+          - text: Blog
+            href: pages/Math/blog/blog.qmd#category=blog                             
+      - text: Teaching 
+        menu:
+          - text: Courses Taught
+            href: pages/Teaching/courses.qmd
+          - text: Mentoring Projects      
+            href: pages/Teaching/mentoring.qmd
+
+      - text: Resources   # Comment the Group part out to remove the Group page
+        href: pages/Resources/resources.qmd
+      - text: Photos   # Comment the Group part out to remove the Group page
+        href: pages/Photos/photos.qmd
+  
+  
+  search:
+    location: navbar
+    type: overlay
+  
+
+
+
+
+
+  page-footer: 
+    border: true
+    background: dark  # You can change the background color here
+    foreground: success  # You can change the foreground color here
+    left: "Updated: <script>var d=new Date();document.write(d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}));</script>" 
+    center:
+      - text: "Developed with Quarto"
+        href: "https://quarto.org"
+        icon: "quarto"
+        target: _blank  
+
+    right: 
+      - icon: github
+        href: https://github.com/drewaray/academic_page
+        text: View Source
+        target: _blank
+      - icon: rss
+        href: posts.xml
+        target: _blank  
+  
+
+  
+  
+
+  
+  google-analytics:
+    tracking-id: "G-H91C03LC6T" 
+    anonymize-ip: true
+
+
+# bibliography: references.bib  # Add references.bib to the root folder to enable the bibliography function
+
+format:
+  html:
+    math: mathjax
+    html-math-method: mathjax
+    filters:
+      - _extensions/read-time.lua
+
+    theme:
+      dark: darkly     # Dark theme
+      light: simplex    # Light theme
+    dark-mode: true     # Enable dark mode toggle
+    css: styles.css
+    toc: true
+    footnotes-hover: true
+    code-copy: true
+    code-link: true
+    code-overflow: wrap
+    fig-align: center
+    link-external-icon: True
+    link-external-newwindow: true
+    email-obfuscation: javascript
+    link-external-filter: '^(?:http:|https:)\/\/web\.math\.ucsb\.edu\/~ortegaray'
+
