@@ -6,6 +6,9 @@ project:
 description-meta: "Andrew Ortegaray's Personal Website"
 author-meta: "Andrew Ortegaray"
 
+date: last-modified
+date-format: "MMMM Do, YYYY"
+
 website:
   title: "Andrew Ortegaray"
   image: "files/images/gunter.png"
@@ -76,7 +79,8 @@ website:
     border: true
     background: dark  # You can change the background color here
     foreground: success  # You can change the foreground color here
-    left: "Updated: <script>var d=new Date();document.write(d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}));</script>" 
+    # left: "Updated: <script>var d=new Date();document.write(d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}));</script>" 
+    left: "Updated: {{<meta date>}}"
     center:
       - text: "Developed with Quarto"
         href: "https://quarto.org"
