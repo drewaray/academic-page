@@ -51,3 +51,5 @@ venv/
 
 # Logs
 *.log
+
+/.luarc.json

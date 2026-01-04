@@ -6,7 +6,6 @@ project:
 description-meta: "Andrew Ortegaray's Personal Website"
 author-meta: "Andrew Ortegaray"
 
-date: last-modified
 css: styles.css
 date-format: "MMMM Do, YYYY"
 
@@ -82,7 +81,7 @@ website:
     background: dark  # You can change the background color here
     foreground: success  # You can change the foreground color here
     # left: "Updated: " 
-    left: "Updated: {{< meta date >}}"
+    left: "Updated: {{< modified '%B %d, %Y' >}}"
     center:
       - text: "Developed with Quarto"
         href: "https://quarto.org"

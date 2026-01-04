@@ -1,7 +1,7 @@
 ---
-title: "What’s New & Updated"
-subtitle: "Posts about papers, events, news, and more"
-description-meta: "Posts about papers, events, news, and more"
+title: "Posts"
+subtitle: "Blog Posts, Thoughts, Papers, and Whatnot"
+description-meta: "Blog Posts, Thoughts, Papers, and Whatnot"
 listing: 
   sort: "date desc"
   type: default
@@ -15,7 +15,7 @@ listing:
       - posts/post-links.yml  # Use this file to add external links
 #      categories: [] 
 
-#page-layout: full
+page-layout: article
 draft-mode: unlinked
 page-navigation: false
 title-block-banner: false
