@@ -5,7 +5,7 @@ author: "Andrew Ortegaray"
 date: "2025-12-30"
 categories: [blog, math, tutorial] 
 image: "method_comparison.png"
-#css: /style.css
+css: /styles.css
 #draft: true
 ---
 
@@ -47,7 +47,7 @@ Generally, around a perfect square $n^2$, we have the approximation
 $$ \sqrt{n^2 + x} \approx n + \frac{x}{2n} $$
 
 Another method sometimes called the Babylonian method (derived from Newton's method), is an iterative method that starts with some guess $x_0$ to the square root of a number $N$ and then improves that guess using the update rule:
-$$ x_{n+1} = \frac{1}{2}\left(\frac{N}{x_n} + x_n \right)$$
+$$ x_{k+1} = \frac{1}{2}\left(\frac{N}{x_k} + x_k \right)$$
 This method isn't perfect, but it converges rapidly. Every iteration of this method roughly doubles the number of digits of accuracy while while every iteration of the proceeding digit-by-digit method only provides one additional digit of accuracy. Here is the comparison for the computation of $\sqrt{2}$ starting at $x_0=1$.
 
 ![](method_comparison.png)
@@ -135,6 +135,17 @@ S&  \phantom{0}1.\phantom{0}7\,\phantom{0}7\,\phantom{0}2 \\
 (3540+2)\cdot \underline{2}  & \phantom{05.02\,}\underline{70\,80\,} \\
                                 & \phantom{05.00\,}16\,12\\
 \end{array}
+
+
+
+
+### Why the Digit-By-Digit Method Works
+The method follows from the simple binomial expansion
+$$ (S+10d)^2 = S^2 + 20 S d + d^2 $$
+Suppose $S$ is our current underestimate of $\sqrt{N}$, so that our current remainder is $R = N - S^2$. We then simply search for the largest digit $d\in\left\{0,\cdots ,9\right\}$ such that our new remainder stays non-negative:
+$$ N - (S+10d)^2 = N- S^2 -20 Sd - d^2 = R - d(20 S + d) \geq 0 $$
+This explains where step 4 in the method comes from. More generally, it show you could use this method to find square root in other bases, or even how you could use a similar method to compute $n$th roots, logarithms, or any function with an easily computable inverse that is strictly increasing.
+
 
 
 ## Notes
