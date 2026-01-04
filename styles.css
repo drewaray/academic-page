@@ -122,3 +122,10 @@ ol.csl-bib-list > li.csl-entry + li.csl-entry {
 .post-meta strong {
   color:var(--quarto-text-foreground);
 }
+
+.quarto-title-meta-heading:has(+ .quarto-title-meta-contents .date) {
+  display: none;
+}
+.quarto-title-meta-contents .date {
+  display: none;
+}
