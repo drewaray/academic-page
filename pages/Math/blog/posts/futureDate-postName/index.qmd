@@ -1,10 +1,8 @@
 ---
 title: "Square Roots and Where to Find Them"
 description: "A tutorial on computing square roots by hand"
-author: "Andrew Ortegaray"
 date: "2025-12-30"
 categories: [blog, math, tutorial] 
-image: "method_comparison.png"
 #css: /style.css
 draft: true
 ---
@@ -36,9 +34,3 @@ S&  \phantom{0}2.\phantom{0}2\ \\
 
 
 About the news
-
-<!--Include social share buttons-->
-{{< include /files/includes/_socialshare.qmd >}}
-
-<!--Include comments-->
-{{< include /files/includes/_comments.qmd >}}

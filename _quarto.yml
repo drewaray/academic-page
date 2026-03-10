@@ -80,8 +80,7 @@ website:
     border: true
     background: dark  # You can change the background color here
     foreground: success  # You can change the foreground color here
-    # left: "Updated: " 
-    left: "Updated: {{< modified '%B %d, %Y' >}}"
+    left: "Updated: {{< now '%B %d, %Y' >}}"
     center:
       - text: "Developed with Quarto"
         href: "https://quarto.org"
@@ -131,4 +130,5 @@ format:
     link-external-newwindow: true
     email-obfuscation: javascript
     link-external-filter: '^(?:http:|https:)\/\/web\.math\.ucsb\.edu\/~ortegaray'
-
+    include-in-header:
+      - files/includes/_head-scripts.html

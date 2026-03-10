@@ -6,6 +6,77 @@
   align-items: stretch;
 }
 
+.photo-grid > .cell,
+.photo-grid .cell-output,
+.photo-grid .cell-output-display {
+  display: contents;
+}
+
+.photo-grid p {
+  display: contents;
+  margin: 0;
+}
+
+.photo-lightbox-open {
+  overflow: hidden;
+}
+
+.photo-lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 1.5rem;
+}
+
+.photo-lightbox-modal.is-open {
+  display: flex;
+}
+
+.photo-lightbox-image {
+  max-width: min(95vw, 1600px);
+  max-height: 88vh;
+  border-radius: 8px;
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.45);
+}
+
+.photo-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.photo-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.35);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.photo-lightbox-nav.prev {
+  left: 1rem;
+}
+
+.photo-lightbox-nav.next {
+  right: 1rem;
+}
+
 .photo-grid a {
   display: block;
   border-radius: 8px;
@@ -129,3 +200,49 @@ ol.csl-bib-list > li.csl-entry + li.csl-entry {
 .quarto-title-meta-contents .date {
   display: none;
 } */
+
+
+
+.wl-embed {
+  width: 100%;
+  margin: 1.25rem 0;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--bs-border-color, #ddd);
+  background: var(--bs-body-bg, #fff);
+}
+
+/* Optional: constrained-height variant */
+.wl-embed.is-fixed {
+  padding: 0;
+  overflow: hidden;
+}
+
+.resources-table {
+  margin-top: 1rem;
+}
+
+.resources-table th,
+.resources-table td {
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+}
+
+.resources-table td.title {
+  max-width: 28rem;
+  white-space: normal;
+}
+
+.resource-link {
+  color: var(--quarto-link-color);
+  text-decoration: none;
+}
+
+.resource-link:hover {
+  text-decoration: underline;
+}
+
+.small-muted {
+  color: var(--quarto-text-muted);
+  font-size: 0.9rem;
+}

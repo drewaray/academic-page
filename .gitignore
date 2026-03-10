@@ -2,6 +2,9 @@
 /.quarto/
 /docs/
 /index_files/
+**/*.quarto_ipynb
+**/*_files/
+**/index_files/
 
 # macOS
 .DS_Store

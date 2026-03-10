@@ -3,7 +3,6 @@ title: "Papers"
 description-meta: "Listing of my publications."
 back-to-top-navigation: true
 title-block-banner: false
-css: style.css
 
 
 
@@ -14,5 +13,4 @@ nocite: "@*"                           # include every entry in the .bib
 
 ::: {#refs}
 :::
-
 

@@ -39,7 +39,7 @@ about:
       text: LinkedIn
       href: https://www.linkedin.com/in/drewaray/
       target: _blank
-    - text: "{{< ai orcid >}} ORCID"   # use academic icons, "" are needed, you also need to install the fontawesome extension
+    - text: "{{< ai orcid >}} ORCID"  
       href: https://orcid.org/0009-0009-6516-3680
       target: _blank
     - text: "{{< ai google-scholar >}} Google Scholar"
@@ -80,10 +80,9 @@ listing:
 
 
 <!-- Delete the following section and delete corresponding lines in the yaml part to remove the recent posts -->
-<!-- ## Recent Posts
-Check out the latest &nbsp;[Papers](posts.qmd#category=paper)&nbsp;, &nbsp;[News](posts.qmd#category=news)&nbsp;, &nbsp;[Events](posts.qmd#category=event)&nbsp;, and &nbsp;[More »](/posts.qmd) -->
+## Recent Posts
+<!-- Check out the latest &nbsp;[Papers](posts.qmd#category=paper)&nbsp;, &nbsp;[News](posts.qmd#category=news)&nbsp;, &nbsp;[Events](posts.qmd#category=event)&nbsp;, and &nbsp;[More »](/pages/Math/blog/blog.qmd.qmd) -->
 
-:::{#recent-posts}
-:::
 
-<!-- <p align="right">[All Posts »](/posts.qmd)</p> -->
+
+<p align="right">[All Posts »](/pages/Math/blog/blog.qmd)</p>

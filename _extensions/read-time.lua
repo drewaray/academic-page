@@ -60,13 +60,14 @@ function Pandoc(doc)
   end
 
   -- Base reading speed: 200 words per minute for regular text
-  -- Math content slows reading: inline math = 10 words, display math = 25 words
+  -- Math content slows reading: inline math = 10 words, display math = 30 words
   local effective_words = total_words
 
   -- Calculate read time with adjusted speed for math-heavy content
-  local base_wpm = 200
-  local math_penalty = (inline_math+math_elements) * 0.3 + (display_math+display_math_blocks) * 0.5  -- Reduce WPM for math
-  local adjusted_wpm = base_wpm * (1 - math.min(math_penalty, 0.7))  -- Max 70% reduction
+  local base_wpm = 175
+  local math_wpm = 40  -- Effective WPM for math content
+  local math_penalty = (inline_math) * 10 + (display_math) * 30  -- Reduce WPM for math
+  local adjusted_wpm = math.max(math_wpm,  (total_words + math_penalty) / ( total_words / base_wpm +   math_penalty / math_wpm )   )  -- Max 70% reduction
 
   local read_time = math.ceil(effective_words / adjusted_wpm)
 

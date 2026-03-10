@@ -1,0 +1,7 @@
+author: "Andrew Ortegaray"
+draft: false
+format:
+  html:
+    include-after-body:
+      - ../../../../../files/includes/_socialshare.qmd
+      - ../../../../../files/includes/_comments.qmd
