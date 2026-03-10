@@ -1,0 +1,45 @@
+---
+title: "Do I know what Derived Functors Are?"
+description: "The answer is still unclear."
+date: "2026-01-09"
+categories: [blog, math, category theory, homological algebra] 
+#css: /style.css
+draft: true
+---
+
+::: {.post-meta}
+**Reading time:** {{< meta read_time >}}  
+**Math content:** {{< meta math_count >}}
+:::
+
+This isn't going to be some deep philosophical take on what derived functors are or what they should be. No, genuinely the question will be *Do I know what derived functors are?*
+
+So, I took a homological algebra course last year and I have to say there were pretty cool bits to it but wow there was [stuff](https://en.wikipedia.org/wiki/Spectral_sequence), and [more stuff](https://en.wikipedia.org/wiki/Derived_category), and [even more stuff](https://en.wikipedia.org/wiki/Six_operations) that went well over my head. Needless to say, it was a whirlwind. Well, I find myself now at a point where I don't think I'll be revisiting the material anytime soon, so I thought it would be good to spend a momement to at least think about it here.
+
+<!-- I am assuming a familiarity of some category theory, chain complexes, homology, and so on.  -->
+
+I should mention now, this is not an introduction. Really, the ideal reader would have just taken an intro course in algebraic topology and have a loose sense of working with chain complexes.
+
+## The Setting: Abelian Categories
+
+
+
+https://mathoverflow.net/questions/103252/why-are-injective-modules-more-complicated-than-projective-modules
+
+## Section 2
+
+$$
+\begin{array}{r|l}
+S&  \phantom{0}2.\phantom{0}2\ \\
+ \hline
+\, & 05.00 \\
+    2\cdot\underline{2}       & \underline{\phantom{0}4\,\,} \\
+                                & \phantom{0}1\phantom{.}00 \\
+(40+2)\cdot \underline{2}  & \phantom{0}\underline{\phantom{5.} 84\,\,}\\
+                                & \phantom{05.}16\\
+\end{array}
+$$
+
+
+
+About the news

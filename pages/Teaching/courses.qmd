@@ -1,162 +1,171 @@
 ---
 title: "Courses Taught"
-
 title-block-banner: false
-css: ../../styles.css
 toc: true
 toc-depth: 2
+execute:
+  echo: false
 ---
 
-Below are the courses I have taught over the years and material related to courses I'm currently teaching. Links to course materials are provided when available. 
+Below are the courses I have taught over the years and material related to courses I'm currently teaching. Links to course materials are provided when available.
 
 # For Current Students
-::: {.teaching-list .teaching-section}
+
+```{python}
+from pathlib import Path
+import html
+import yaml
+from IPython.display import Markdown
+
+candidates = [
+    Path("pages/Teaching/data/courses.yml"),
+    Path("data/courses.yml"),
+    Path("courses.yml"),
+]
+course_file = next((p for p in candidates if p.exists()), None)
+if course_file is None:
+    raise FileNotFoundError("courses.yml not found")
+
+with course_file.open(encoding="utf-8") as fh:
+    courses = yaml.safe_load(fh) or []
 
 
-- 
-  <div class="teaching-year">Winter 25/26</div>
-  <div class="course-entry">
-  [MA4B: Differential Equations](#)
+def escape(value):
+    return html.escape(str(value)) if value is not None else ""
 
-  <div class="course-meta"> 
-    [Course Syllabus](#) | [Course Files](#)
 
-  </div>  
+def render_course_title(course):
+    code = escape(course.get("course_code", ""))
+    title = escape(course.get("title", ""))
+    course_text = f"{code}: {title}" if code else title
+    href = str(course.get("course_url", "")).strip()
+    if href and href != "#":
+        return f'<a href="{escape(href)}">{course_text}</a>'
+    return course_text
 
-  </div>
-:::
+
+def render_links(links):
+    rendered = []
+    for link in links or []:
+        label = escape(link.get("label", "Link"))
+        href = str(link.get("href", "")).strip()
+        if not href or href == "#":
+            rendered.append(label)
+        else:
+            rendered.append(f'<a href="{escape(href)}">{label}</a>')
+    return " | ".join(rendered)
+
+
+current_courses = [c for c in courses if str(c.get("status", "")).lower() == "current"]
+
+lines = ['<div class="teaching-list teaching-section">']
+for course in current_courses:
+    term = escape(course.get("term", ""))
+    title_html = render_course_title(course)
+    links_html = render_links(course.get("links", []))
+
+    lines.append("<li>")
+    lines.append(f'<div class="teaching-year">{term}</div>')
+    lines.append('<div class="course-entry">')
+    lines.append(title_html)
+    if links_html:
+        lines.append(f'<div class="course-meta">{links_html}</div>')
+    lines.append("</div>")
+    lines.append("</li>")
+lines.append("</div>")
+
+Markdown("\n".join(lines))
+```
 
 ## Contact & Support
-
-**Office Hours**: Mon 4-5 PM &nbsp; |  &nbsp; **Location**: SH 6431 $\mathbb{N}$
+**Office Hours (W 25-26 Quarter)**: Tue 2-3 PM &nbsp; | &nbsp; **Location**: SH 6431 $\mathbb{N}$
 
 Students are encouraged to attend office hours or schedule appointments for additional support.
 
-
 ---
-
-
 
 # Course Archive
 
+```{python}
+from collections import OrderedDict
+from pathlib import Path
+import html
+import yaml
+from IPython.display import Markdown
 
-### UC Santa Barbara {#uc-santa-barbara}
+candidates = [
+    Path("pages/Teaching/data/courses.yml"),
+    Path("data/courses.yml"),
+    Path("courses.yml"),
+]
+course_file = next((p for p in candidates if p.exists()), None)
+if course_file is None:
+    raise FileNotFoundError("courses.yml not found")
 
-::: {.teaching-container}
-::: {.teaching-list .teaching-section}
-
-
-- 
-  <div class="teaching-year">Fall 25/26</div>
-  <div class="course-entry">
-  [MA6B: Vector Calculus and Fourier Series](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-
-  </div>
-
-- 
-  <div class="teaching-year">Summer 24/25</div>
-  <div class="course-entry">
-  [MA6B: Vector Calculus and Fourier Series](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-
-  </div>
-
-- 
-  <div class="teaching-year">Spring 24/25</div>
-  <div class="course-entry">
-  [MA34B: Calculus for Social Sciences II](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-
-  </div>
-
-- 
-  <div class="teaching-year">Winter 24/25</div>
-  <div class="course-entry">
-  [MA3B: Calculus with Applications II](#)
-
-  <!-- <div class="course-meta">  </div>  -->
-
-  </div>
-
-- 
-  <div class="teaching-year">Fall 24/25</div>
-  <div class="course-entry">
-  [MA3A: Calculus with Applications I](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-
-  </div>
-
-:::
-:::
+with course_file.open(encoding="utf-8") as fh:
+    courses = yaml.safe_load(fh) or []
 
 
-### Caltech {#caltech}
-
-::: {.teaching-container}
-::: {.teaching-list .teaching-section}
-
-- 
-  <div class="teaching-year">Fall 19/20</div>
-  <div class="course-entry">
-  [Ma 5a: Group Theory](#)
-
-  <!-- <div class="course-meta">    -->
-  </div>
-
-- 
-  <div class="teaching-year">Summer 18/19</div>
-  <div class="course-entry">
-  [Ma 0: Introduction to Proofs](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-  </div>
-
-- 
-  <div class="teaching-year">Spring 18/19</div>
-  <div class="course-entry">
-  [Ph 2c: Intro Statistical Mechanics](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-  </div>
-
-- 
-  <div class="teaching-year">Winter 18/19</div>
-  <div class="course-entry">
-  [Ph 1b: Special Relativity and Intro E&M](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-  </div>
-
-- 
-  <div class="teaching-year">Fall 18/19</div>
-  <div class="course-entry">
-  [Ph 1a: Introductory Mechanics](#)
-
-  <!-- <div class="course-meta">  </div>  -->
-  </div>
-
-- 
-  <div class="teaching-year">Summer 17/18</div>
-  <div class="course-entry">
-  [Ma 0: Introduction to Proofs](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-  </div>
-
-- 
-  <div class="teaching-year">Spring 17/18</div>
-  <div class="course-entry">
-  [Ph 1c: Intermediate E&M](#)
-
-  <!-- <div class="course-meta">  </div>   -->
-  </div>
-
-:::
-:::
+def escape(value):
+    return html.escape(str(value)) if value is not None else ""
 
 
+def slugify(text):
+    return "-".join(str(text).strip().lower().split())
+
+
+def render_course_title(course):
+    code = escape(course.get("course_code", ""))
+    title = escape(course.get("title", ""))
+    course_text = f"{code}: {title}" if code else title
+    href = str(course.get("course_url", "")).strip()
+    if href and href != "#":
+        return f'<a href="{escape(href)}">{course_text}</a>'
+    return course_text
+
+
+def render_links(links):
+    rendered = []
+    for link in links or []:
+        label = escape(link.get("label", "Link"))
+        href = str(link.get("href", "")).strip()
+        if not href or href == "#":
+            rendered.append(label)
+        else:
+            rendered.append(f'<a href="{escape(href)}">{label}</a>')
+    return " | ".join(rendered)
+
+
+archive_courses = [c for c in courses if str(c.get("status", "")).lower() != "current"]
+by_institution = OrderedDict()
+for course in archive_courses:
+    institution = str(course.get("institution", "Other")).strip() or "Other"
+    by_institution.setdefault(institution, []).append(course)
+
+lines = []
+for institution, entries in by_institution.items():
+    institution_slug = slugify(institution)
+    lines.append(f'### {escape(institution)} {{#{institution_slug}}}')
+    lines.append('<div class="teaching-container">')
+    lines.append('<div class="teaching-list teaching-section">')
+
+    for course in entries:
+        term = escape(course.get("term", ""))
+        title_html = render_course_title(course)
+        links_html = render_links(course.get("links", []))
+
+        lines.append("<li>")
+        lines.append(f'<div class="teaching-year">{term}</div>')
+        lines.append('<div class="course-entry">')
+        lines.append(title_html)
+        if links_html:
+            lines.append(f'<div class="course-meta">{links_html}</div>')
+        lines.append("</div>")
+        lines.append("</li>")
+
+    lines.append("</div>")
+    lines.append("</div>")
+    lines.append("")
+
+Markdown("\n".join(lines))
+```

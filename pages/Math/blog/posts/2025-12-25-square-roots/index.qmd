@@ -1,11 +1,11 @@
 ---
 title: "Square Roots and Where to Find Them"
-description: "A tutorial on computing square roots by hand"
-author: "Andrew Ortegaray"
+description: "A tutorial on computing square roots by hand."
 date: "2025-12-30"
 categories: [blog, math, tutorial] 
 image: "method_comparison.png"
-css: /styles.css
+  
+
 #draft: true
 ---
 
@@ -14,16 +14,16 @@ css: /styles.css
 **Math content:** {{< meta math_count >}}
 :::
 
-First post of the blog, woo! I thought it would be nice to have a warm-up post about something fun, but also that I haven't seen mentioned much (maybe for good reason). The goal of today's post is how to compute square roots **exactly** by hand, digit-by-digit, no funny business. It looks something like this:
+First post of the blog, woo! I thought it would be nice to have a warm-up post about something fun, but also that I haven't seen mentioned much (maybe for good reason). The goal of today's post is to show how to compute square roots **exactly** by hand, digit-by-digit, no funny business. It looks something like this:
 
 \begin{array}{r|l}
 S&  \phantom{0}2.\phantom{0}2\ \\
  \hline
 \, & 05.00 \\
-    2\cdot\underline{2}       & \underline{\phantom{0}4\,\,} \\
-                                & \phantom{0}1\phantom{.}00 \\
+ 2\cdot\underline{2}       & \underline{\phantom{0}4\,\,} \\
+ & \phantom{0}1\phantom{.}00 \\
 (40+2)\cdot \underline{2}  & \phantom{0}\underline{\phantom{5.} 84\,\,}\\
-                                & \phantom{05.}16\\
+ & \phantom{05.}16\\
 \end{array}
 
 
@@ -31,11 +31,16 @@ S&  \phantom{0}2.\phantom{0}2\ \\
 
 
 
-The method is reminiscient of long-division and if that is a trigger then just a warning: it potentially gets a little bit more involved. Still, I think this method is worth talking about from a post-apocalyptic-all-computers-are-destroyed-but-we-still-need-square-roots-for-some-reason perspective. Admittedly, you would want to use a Newton-like method or something else for practical approximations, but this still only involves integer arithmetric and avoids integer division entirely.
+
+
+
+
+
+The method is reminiscent of long division, and if that is a trigger, then just a warning: it becomes a little more involved. Still, I think this method is worth talking about from a post-apocalyptic-all-computers-are-destroyed-but-we-still-need-square-roots-for-some-reason perspective. Admittedly, you would want to use a Newton-like method or something else for practical approximations, but this still only involves integer arithmetic and avoids integer division entirely.
 
 
 ## Approximate Methods (A Prelude)
-Now, to get us potentially interested in this at all, let's look at what we might first do if we needed a rough square root by hand: taylor expansion. Specifically, we could expand a square root of almost a perfect square, say $50$ or $145$. For example, for $\sqrt{50}$ we would wish to evaluate $f(1)$ for the function
+Now, to get us potentially interested in this at all, let's look at what we might first do if we needed a rough square root by hand: Taylor expansion. Specifically, we can expand a square root of almost a perfect square, such as $50$ or $145$. For example, for $\sqrt{50}$ we would wish to evaluate $f(1)$ for the function
 $$f(x) = \sqrt{7^2 + x} $$
 The Taylor expansion around $x=0$ to leading order is
 $$ f(x) =\sqrt{7^2 + x} = 7 + \frac{x}{2 \cdot 7} + O(x^2) $$
@@ -46,11 +51,18 @@ which is pretty close to the real value of $7.07106\ldots$
 Generally, around a perfect square $n^2$, we have the approximation
 $$ \sqrt{n^2 + x} \approx n + \frac{x}{2n} $$
 
-Another method sometimes called the Babylonian method (derived from Newton's method), is an iterative method that starts with some guess $x_0$ to the square root of a number $N$ and then improves that guess using the update rule:
+Another method, sometimes called the Babylonian method (derived from Newton's method), is an iterative method that starts with some guess $x_0$ to the square root of a number $N$ and then improves that guess using the update rule:
 $$ x_{k+1} = \frac{1}{2}\left(\frac{N}{x_k} + x_k \right)$$
-This method isn't perfect, but it converges rapidly. Every iteration of this method roughly doubles the number of digits of accuracy while while every iteration of the proceeding digit-by-digit method only provides one additional digit of accuracy. Here is the comparison for the computation of $\sqrt{2}$ starting at $x_0=1$.
+This method isn't perfect, but it converges rapidly. Every iteration of this method roughly doubles the number of digits of accuracy, while every iteration of the below digit-by-digit method only provides one additional digit of accuracy. Here is the comparison for the computation of $\sqrt{2}$ starting at $x_0=1$.
 
 ![](method_comparison.png)
+
+If you want to try this method out for yourself, you can use the following Mathematica notebook:
+
+<div class="wl-embed"
+     data-wl-id="b8ff0e97-cf79-4d29-8467-4c49aa95862f">
+</div>
+
 
 ## Exact Method: Digit-by-Digit
 The digit-by-digit method is a manual algorithm for finding square roots. It involves grouping the digits of the number in pairs (starting from the decimal point) and using an integer inequality to find the largest square (up to a power of $100$) less than the target number. This process is repeated for each subsequent group of digits. The following steps outline this process:
@@ -83,7 +95,7 @@ The largest digit that satisfies this is $\boxed{2}$ since $42 \cdot 2 = 84 < 10
 6. Double the current result $S=22$ to get $44$. We need to find the next digit $d$ such that $(440 + d) \cdot d \leq 1600$. The largest digit that satisfies this is $\boxed{3}$ since $(440+3) \cdot 3 = 1329 < 1600$. 
 7. Continuing this process, we find the next digits to be $6$, $0$, and so on.
 
-We can compactly write out this method in a long-division-like format like we saw earlier in the post. We read the table from top to bottom and keep track of the work of finding digits (underlined) on the left.
+We can compactly write out this method in a long-division-like format as we saw earlier in the post. We read the table from top to bottom and keep track of the work of finding digits (underlined) on the left.
 
 
 
@@ -91,33 +103,33 @@ We can compactly write out this method in a long-division-like format like we sa
 S&  \phantom{0}2.\phantom{0}2\,\phantom{0}3\,\phantom{0}6 \\
  \hline
 \, & 05.00\,00\,00 \\
-    2\cdot\underline{2}       & \underline{\phantom{0}4\,\,} \\
-                                & \phantom{0}1\phantom{.}00 \\
+ 2\cdot\underline{2}       & \underline{\phantom{0}4\,\,} \\
+ & \phantom{0}1\phantom{.}00 \\
 (40+2)\cdot \underline{2}  & \phantom{0}\underline{\phantom{5.} 84\,\,}\\
-                                & \phantom{05.}16\,00 \\
+ & \phantom{05.}16\,00 \\
 (440+3)\cdot \underline{3}   & \phantom{05.}\underline{13\,29\,} \\
-                                & \phantom{05.0}2\,71\,00 \\
+ & \phantom{05.0}2\,71\,00 \\
 (4460+6)\cdot \underline{6}  & \phantom{05.0}\underline{2\,67\,96\,} \\
-                                & \phantom{05.00\,0}3\,04\\
+ & \phantom{05.00\,0}3\,04\\
 \end{array}
 
 
 ### Example: Finding $\sqrt{50}$ and $\sqrt{\pi}$
-Here are two more examples. The second one in particular demonstrates it is no harder to take squares roots of arbitrary real numbers.
+Here are two more examples. The second one in particular demonstrates that it is no harder to take square roots of arbitrary real numbers.
 
 
 \begin{array}{r|l}
 S&  \phantom{0}7.\phantom{0}0\,\phantom{0}7\,\phantom{0}1 \\
  \hline
 \, & 50.00\,00\,00 \\
-    7\cdot\underline{7}       & \underline{49\,\,} \\
-                                & \phantom{0}1\phantom{.}00 \\
+ 7\cdot\underline{7}       & \underline{49\,\,} \\
+ & \phantom{0}1\phantom{.}00 \\
 (140+0)\cdot \underline{0}  & \phantom{0}\underline{\phantom{5.0} 0\,\,}\\
-                                & \phantom{0}1\phantom{.}00\,00 \\
+ & \phantom{0}1\phantom{.}00\,00 \\
 (1400+7)\cdot \underline{7}   & \phantom{0}\underline{\phantom{1.}98\,49\,} \\
-                                & \phantom{05.0}1\,51\,00 \\
+ & \phantom{05.0}1\,51\,00 \\
 (14140+1)\cdot \underline{1}  & \phantom{05.0}\underline{1\,41\,41\,}  \\
-                                & \phantom{05.00\,0}0\,59\\
+ & \phantom{05.00\,0}0\,59\\
 \end{array}
 
 
@@ -126,14 +138,14 @@ S&  \phantom{0}7.\phantom{0}0\,\phantom{0}7\,\phantom{0}1 \\
 S&  \phantom{0}1.\phantom{0}7\,\phantom{0}7\,\phantom{0}2 \\
  \hline
 \, & 03.14\,15\,92\cdots \\
-    1\cdot\underline{1}       & \underline{\phantom{0}1\,\,} \\
-                                & \phantom{0}2\phantom{.}14 \\
+ 1\cdot\underline{1}       & \underline{\phantom{0}1\,\,} \\
+ & \phantom{0}2\phantom{.}14 \\
 (20+7)\cdot \underline{7}  & \phantom{0}\underline{1\phantom{.} 89\,\,}\\
-                                & \phantom{05.}25\,15 \\
+ & \phantom{05.}25\,15 \\
 (340+7)\cdot \underline{7}   & \phantom{05.}\underline{24\,29\,} \\
-                                & \phantom{05.00\,}86\,92 \\
+ & \phantom{05.00\,}86\,92 \\
 (3540+2)\cdot \underline{2}  & \phantom{05.02\,}\underline{70\,80\,} \\
-                                & \phantom{05.00\,}16\,12\\
+ & \phantom{05.00\,}16\,12\\
 \end{array}
 
 
@@ -144,19 +156,10 @@ The method follows from the simple binomial expansion
 $$ (S+10d)^2 = S^2 + 20 S d + d^2 $$
 Suppose $S$ is our current underestimate of $\sqrt{N}$, so that our current remainder is $R = N - S^2$. We then simply search for the largest digit $d\in\left\{0,\cdots ,9\right\}$ such that our new remainder stays non-negative:
 $$ N - (S+10d)^2 = N- S^2 -20 Sd - d^2 = R - d(20 S + d) \geq 0 $$
-This explains where step 4 in the method comes from. More generally, it show you could use this method to find square root in other bases, or even how you could use a similar method to compute $n$th roots, logarithms, or any function with an easily computable inverse that is strictly increasing.
+This explains where step 4 in the method comes from. More generally, it shows you could use this method to find square roots in other bases, or even how you could use a similar method to compute $n$th roots, logarithms, or any function with an easily computable inverse that is strictly increasing.
 
 
 
 ## Notes
 
-The digit-by-digit technique here is a little silly, but the principle behind it is reminiscient of the [truncation that Netz Katz discussed](https://academicweb.nd.edu/~andyp/teaching/2020FallMath10850/KatzCranks.pdf) in the real analysis-like material he taught for the classic Ma 1a class at Caltech.
-
-
-
-
-<!--Include comments-->
-{{< include /files/includes/_comments.qmd >}}
-
-<!--Include social share buttons-->
-{{< include /files/includes/_socialshare.qmd >}}
+The digit-by-digit technique here is a little silly, but the principle behind it is reminiscent of the [truncation that Netz Katz discussed](https://academicweb.nd.edu/~andyp/teaching/2020FallMath10850/KatzCranks.pdf) in the real analysis-like material he taught for the classic Ma 1a class at Caltech.

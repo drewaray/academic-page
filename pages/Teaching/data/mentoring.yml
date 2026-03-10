@@ -1,0 +1,28 @@
+- year: "2025-2026"
+  program: "UCSB DRP 2026"
+  program_url: "https://www.ucsbdrp.org"
+  topics: "Grid Homology"
+  # topics_url: "https://www.ucsbdrp.org/mentorprofiles.html"
+  mentees:
+    - "Pablo Gomez"
+  poster_url: ""
+
+- year: "2024-2025"
+  program: "Summer 2025 REU"
+  program_url: ""
+  topics: "Quantum Error Correction, 4D Homology Codes"
+  topics_url: ""
+  mentees:
+    - "Faizan Hussaini"
+    - "Mingxin Du"
+    - "Samyak Jain"
+  poster_url: ""
+
+- year: "2024-2025"
+  program: "UCSB DRP 2025"
+  program_url: "https://www.ucsbdrp.org/assets/files/2025/2025_All_Posters.pdf"
+  topics: "Persistent Homology"
+  topics_url: ""
+  mentees:
+    - "Luke Crossley"
+  poster_url: "drp_2024_poster.pdf"

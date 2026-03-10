@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "wolfram-notebook-embedder": "^0.3.0"
+  }
+}

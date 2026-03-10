@@ -1,8 +1,8 @@
---- 
+---
 title: "Photos"
 page-layout: full
 execute:
-    echo: True
+  echo: false
 lightbox:
   match: auto
   effect: fade
@@ -10,32 +10,53 @@ lightbox:
   loop: false
 ---
 
-A small gallery — click any image to open the full-size version.
+A small gallery -- click any image to open the full-size version.
 
+::: {.photo-grid}
 
-<!-- 
 ```{python}
-#| results: asis
-import glob, os
-from IPython.display import Markdown
-folder = "./photography"
-exts = {".jpg",".jpeg",".png",".gif",".webp"}
-imgs = sorted([p for p in glob.glob(os.path.join(folder,"*")) if os.path.splitext(p)[1].lower() in exts])
-res = ''
-for p in imgs:
-    name = os.path.basename(p)
-    name = name.split('.')[0]
-    res +=   f'![{name}]({p}){{ group="gallery" }} ' 
-    res += '\n\n'
+#| output: asis
+from pathlib import Path
 
+EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+
+source_candidates = [Path("photography"), Path("pages/Photos/photography")]
+source_dir = next((p for p in source_candidates if p.exists()), None)
+if source_dir is None:
+    raise FileNotFoundError("Could not locate photos directory")
+
+web_dir = source_dir.parent / "photography_derived" / "web"
+thumb_dir = source_dir.parent / "photography_derived" / "thumbs"
+
+
+def as_page_relative(path):
+    parts = path.as_posix().split("pages/Photos/", 1)
+    if len(parts) == 2:
+        return parts[1]
+    return path.as_posix()
+
+
+images = sorted(
+    p for p in source_dir.iterdir() if p.is_file() and p.suffix.lower() in EXTS
+)
+
+tiles = []
+for image in images:
+    web_image = web_dir / image.name
+    thumb_image = thumb_dir / image.name
+
+    full = web_image if web_image.exists() else image
+    preview = thumb_image if thumb_image.exists() else full
+
+    alt = image.stem.replace("_", " ").strip()
+    preview_path = as_page_relative(preview)
+    full_path = as_page_relative(full)
+
+    tiles.append(
+        f'[![]({preview_path})]({full_path}){{.lightbox group=\"photo-gallery\" title=\"{alt}\"}}'
+    )
+
+print("\n\n".join(tiles))
 ```
- -->
-
-<!-- :::{style="display: grid;grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));grid-gap: 1em;"} -->
-
-::: {.photo-grid attributes="data-role='lightbox-gallery'"}
-
-
-`{python} Markdown(res)`
 
 :::

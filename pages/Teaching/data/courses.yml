@@ -1,0 +1,98 @@
+- term: "Winter 25/26"
+  institution: "UC Santa Barbara"
+  course_code: "MA4B"
+  title: "Differential Equations"
+  status: "current"
+  links:
+    - label: "Course Syllabus"
+      href: "course_materials/w26_ma4b/w26_ma4b_syllabus.pdf"
+    - label: "Course Files"
+      href: "course_materials/w26_ma4b/w26_ma4b_archive.zip"
+
+- term: "Fall 25/26"
+  institution: "UC Santa Barbara"
+  course_code: "MA6B"
+  title: "Vector Calculus and Fourier Series"
+  status: "archive"
+  links:
+    - label: "Course Syllabus"
+      href: "course_materials/f25_ma6b/MATH 6B Outline.pdf"
+
+- term: "Summer 24/25"
+  institution: "UC Santa Barbara"
+  course_code: "MA6B"
+  title: "Vector Calculus and Fourier Series"
+  status: "archive"
+  links:
+    - label: "Course Syllabus"
+      href: "course_materials/su25_ma6b/MATH 6B Outline.pdf"
+
+- term: "Spring 24/25"
+  institution: "UC Santa Barbara"
+  course_code: "MA34B"
+  title: "Calculus for Social Sciences II"
+  status: "archive"
+  links: []
+
+- term: "Winter 24/25"
+  institution: "UC Santa Barbara"
+  course_code: "MA3B"
+  title: "Calculus with Applications II"
+  status: "archive"
+  links: []
+
+- term: "Fall 24/25"
+  institution: "UC Santa Barbara"
+  course_code: "MA3A"
+  title: "Calculus with Applications I"
+  status: "archive"
+  links: []
+
+- term: "Fall 19/20"
+  institution: "Caltech"
+  course_code: "Ma 5a"
+  title: "Group Theory"
+  status: "archive"
+  links: []
+
+- term: "Summer 18/19"
+  institution: "Caltech"
+  course_code: "Ma 0"
+  title: "Introduction to Proofs"
+  status: "archive"
+  links: []
+
+- term: "Spring 18/19"
+  institution: "Caltech"
+  course_code: "Ph 2c"
+  title: "Intro Statistical Mechanics"
+  status: "archive"
+  links: []
+
+- term: "Winter 18/19"
+  institution: "Caltech"
+  course_code: "Ph 1b"
+  title: "Special Relativity and Intro E&M"
+  status: "archive"
+  links: []
+
+- term: "Fall 18/19"
+  institution: "Caltech"
+  course_code: "Ph 1a"
+  title: "Introductory Mechanics"
+  status: "archive"
+  links: []
+
+- term: "Summer 17/18"
+  institution: "Caltech"
+  course_code: "Ma 0"
+  title: "Introduction to Proofs"
+  status: "archive"
+  links: []
+
+- term: "Spring 17/18"
+  institution: "Caltech"
+  course_code: "Ph 1c"
+  title: "Intermediate E&M"
+  status: "archive"
+  links: []

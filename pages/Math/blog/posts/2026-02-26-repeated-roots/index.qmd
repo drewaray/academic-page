@@ -1,0 +1,54 @@
+---
+title: "Repeated Roots in ODEs"
+description: "A slick method for finding homogeneous solutions to ODEs with repeated roots."
+Author: "Andrew Ortegaray"
+date: "2026-02-26"
+categories: [ blog, math, ODEs, MA4B, teaching] 
+image: "repeated_root.png"
+draft: false
+
+---
+
+::: {.post-meta}
+**Reading time:** {{< meta read_time >}}  
+**Math content:** {{< meta math_count >}}
+:::
+
+
+While teaching one of my sections for MA4B, a student showed me a curious method they discovered for finding the second homogeneous solution to an ODE with repeated roots. I had never seen this method before, and I thought it was pretty neat, so I wanted to share it here. The method is based on the idea of treating the repeated root as a limit of two distinct roots that are very close together. By doing this, we can derive the second solution by taking a limit as the two roots approach each other.
+
+## The Setup
+
+The original context for this method was solving the homogenous ODE
+$$ t^2 y'' + 3 t y' + y = 0 $$
+This is an example of an Euler-Cauchy equation, and we can find solutions by making the ansatz $y(t) = t^r$ for real $r$. Plugging in this guess, we acquire the result
+$$ t^r( r^2 + 2r + 1) = 0 $$
+which has the repeated root $r=-1$. Thus, we only know one solution to the ODE is $y_1(t) = t^{-1}$. Using standard method like reduction of order or considering generalized eigenvectors, we can find the second solution to be 
+$$y_2(t) = t^{-1} \ln t$$
+The student's method is more ad-hoc and supposes that the repeated root case is the limiting result of having an ODE with distinct roots $2$ and $2+\delta$ and letting $\delta \to 0$. Their main claim was that the second solution should be given by considering the quantity
+$$ \frac{t^{2 + \delta} - t^{2}}{\delta} $$
+ as $\delta$ goes to $0$. Indeed, for any fixed non-zero $\delta$, the quantity in the limit would be linearly independent solution to the ODE, so one may hope that in the limit it stays linearly independent and gives the second solution. This indeed turns out to be the case and we have
+ $$ y_2(t) = \lim_{\delta \to 0} \frac{t^{2 + \delta} - t^{2}}{\delta} = t^2 \ln t $$
+which is exactly the second solution we found using the more standard methods. Now this was quite curious, but what made me really interested was that they claimed this method also worked for constant-coefficient ODEs with repeated roots, which signaled something more general was happening here. 
+
+
+## The General Method
+The general context for this method insofar as it seems to me is that we have a linear differential operator $L$ and a class of eigenfunctions $y_r(t)$ such that
+$$ L[y_r(t)] = p(r) y_r(t) $$
+for some polynomial $p(r)$ in $r$. For the Euler-Cauchy equations the class is $y_r(t) = t^r$ and for constant-coefficient ODEs the class is $y_r(t) = e^{rt}$. In either case, suppose that $p(r)$ has a repeated root at $r=r_0$. We can differentiate each side of the above equation with respect to $r$ to acquire
+$$ L\left[\frac{\partial y_r(t)}{\partial r}\right] = p'(r) y_r(t) + p(r) \frac{\partial y_r(t)}{\partial r} $$
+Evaluating this at $r=r_0$ and using the fact that $p(r_0) = 0$ and $p'(r_0) = 0$ (since $r_0$ is a repeated root), we acquire
+$$ L\left[\frac{\partial y_r(t)}{\partial r}\bigg|_{r=r0}\right] = 0 $$
+which shows that 
+
+$$ y_2(t) = \frac{\partial y_r(t)}{\partial r}\bigg|_{r=r0}$$
+is a second solution to the ODE. Indeed, for the Euler-Cauchy case, we have $y_r(t) = t^r$ and thus $\frac{\partial y_r(t)}{\partial r}|_{r=-1} = t^{-1} \ln t$, and for the constant-coefficient case, we have $y_r(t) = e^{rt}$ and thus $\frac{\partial y_r(t)}{\partial r}|_{r=r0} = t e^{r_0 t}$, which are exactly the second solutions we would find using the more standard methods.
+
+
+
+
+## Notes
+
+
+
+
