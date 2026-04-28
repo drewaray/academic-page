@@ -16,7 +16,7 @@
   status: "archive"
   links:
     - label: "Course Syllabus"
-      href: "course_materials/f25_ma6b/MATH 6B Outline.pdf"
+      href: "course_materials/f25_ma6b/f25_ma6b_syllabus.pdf"
 
 - term: "Summer 24/25"
   institution: "UC Santa Barbara"
@@ -25,7 +25,7 @@
   status: "archive"
   links:
     - label: "Course Syllabus"
-      href: "course_materials/su25_ma6b/MATH 6B Outline.pdf"
+      href: "course_materials/su25_ma6b/su25_ma6b_syllabus.pdf"
 
 - term: "Spring 24/25"
   institution: "UC Santa Barbara"

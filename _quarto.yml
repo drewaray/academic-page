@@ -89,7 +89,7 @@ website:
 
     right: 
       - icon: github
-        href: https://github.com/drewaray/academic_page
+        href: https://github.com/drewaray/academic-page
         text: View Source
         target: _blank
       - icon: rss
