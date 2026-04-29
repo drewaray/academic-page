@@ -15,6 +15,7 @@ Or:
 Optional:
   PHOTO_ASSET_BASE=https://example.edu/~user/pages/Photos/ ./scripts/deploy-site.sh ...
   DEPLOY_INCLUDE_PHOTOS=1 ./scripts/deploy-site.sh ...
+  DEPLOY_INCLUDE_COURSE_ARCHIVES=1 ./scripts/deploy-site.sh ...
   DEPLOY_RSYNC_RSH='ssh -i ~/.ssh/key -o IdentitiesOnly=yes' ./scripts/deploy-site.sh ...
   DEPLOY_SKIP_CLEAN=1 ./scripts/deploy-site.sh ...
 USAGE
@@ -74,12 +75,22 @@ photo_excludes=(
   --exclude "/pages/Photos/photography_derived/**"
 )
 
+archive_excludes=(
+  --exclude "/pages/Teaching/course_materials/**/*.zip"
+)
+
+rsync_excludes=()
+
 if [[ "${DEPLOY_INCLUDE_PHOTOS:-0}" != "1" ]]; then
   rm -rf docs/pages/Photos/photography docs/pages/Photos/photography_derived
-  rsync -az --delete --stats --chmod=u=rwX,go=rX -e "$RSYNC_RSH" "${photo_excludes[@]}" docs/ "$TARGET"
-else
-  rsync -az --delete --stats --chmod=u=rwX,go=rX -e "$RSYNC_RSH" docs/ "$TARGET"
+  rsync_excludes+=("${photo_excludes[@]}")
 fi
+
+if [[ "${DEPLOY_INCLUDE_COURSE_ARCHIVES:-0}" != "1" ]]; then
+  rsync_excludes+=("${archive_excludes[@]}")
+fi
+
+rsync -az --delete --stats --chmod=u=rwX,go=rX -e "$RSYNC_RSH" "${rsync_excludes[@]}" docs/ "$TARGET"
 
 if [[ "${DEPLOY_SKIP_CLEAN:-0}" != "1" ]]; then
   ./scripts/clean-generated.sh --apply

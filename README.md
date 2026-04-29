@@ -232,7 +232,25 @@ By default, it:
 - runs `quarto render --to html`
 - removes generated photo folders from `docs/`
 - preserves remote photo asset folders
+- preserves remote course archive zip files
 - transfers only the rendered site bundle with `rsync`
+
+Course archive zip files under `pages/Teaching/course_materials/` are ignored
+locally and should be treated as external assets. Keep durable copies as GitHub
+release assets or another GitHub-hosted archive, and keep deployed copies on the
+UCSB web server. Routine deploys preserve those remote `.zip` files even when
+they are absent from the local checkout.
+
+To upload or replace course archive zip files on the UCSB server, temporarily
+restore them locally and opt in to syncing them:
+
+```bash
+DEPLOY_INCLUDE_COURSE_ARCHIVES=1 ./scripts/deploy-site.sh \
+  ucsb-web:/home/grad/ortegaray/public_html/
+```
+
+After that upload, the local `.zip` files can be removed again. The syllabus
+PDFs remain small enough to track directly in Git.
 
 To override the photo asset base URL:
 

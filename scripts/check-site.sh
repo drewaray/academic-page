@@ -59,6 +59,9 @@ ignore_prefixes = (
 
 skip_dirs = {".git", ".quarto", "docs", "node_modules", "people_test"}
 allowed_generated = {"posts.xml", "sitemap.xml", "search.json", "listings.json"}
+external_local_assets = (
+    "course_materials/",
+)
 
 
 def should_check(target: str) -> bool:
@@ -77,6 +80,12 @@ def should_check(target: str) -> bool:
 def normalize_target(target: str) -> str:
     target = target.strip().strip("<>").split("#", 1)[0].split("?", 1)[0]
     return target.strip()
+
+
+def is_external_local_asset(target: str) -> bool:
+    return target.endswith(".zip") and any(
+        target.startswith(prefix) for prefix in external_local_assets
+    )
 
 
 def candidate_paths(path: Path, target: str):
@@ -136,6 +145,8 @@ for path in ROOT.rglob("*"):
             if not target:
                 continue
             if target.startswith(ignore_prefixes) or target.startswith("#"):
+                continue
+            if is_external_local_asset(target):
                 continue
 
             if not any(candidate.exists() for candidate in candidate_paths(rel_path, target)):
