@@ -12,6 +12,7 @@
 # Large media kept on the deployment host or in an external archive
 /pages/Photos/photography/
 /pages/Photos/photography_derived/
+/pages/Teaching/course_materials/**/*.zip
 
 # macOS
 .DS_Store
