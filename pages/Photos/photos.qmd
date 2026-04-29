@@ -16,44 +16,100 @@ A small gallery -- click any image to open the full-size version.
 
 ```{python}
 #| output: asis
+import json
+import os
 from pathlib import Path
 
 EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
 
-source_candidates = [Path("photography"), Path("pages/Photos/photography")]
-source_dir = next((p for p in source_candidates if p.exists()), None)
-if source_dir is None:
-    raise FileNotFoundError("Could not locate photos directory")
+page_candidates = [Path("."), Path("pages/Photos")]
+page_dir = next(
+    (
+        p
+        for p in page_candidates
+        if (p / "photos.json").exists() or (p / "photography").exists()
+    ),
+    Path("."),
+)
 
-web_dir = source_dir.parent / "photography_derived" / "web"
-thumb_dir = source_dir.parent / "photography_derived" / "thumbs"
+manifest_path = page_dir / "photos.json"
+source_dir = page_dir / "photography"
+web_dir = page_dir / "photography_derived" / "web"
+thumb_dir = page_dir / "photography_derived" / "thumbs"
+
+manifest = {}
+manifest_asset_base = ""
+if manifest_path.exists():
+    manifest = json.loads(manifest_path.read_text())
+    if isinstance(manifest, list):
+        image_entries = manifest
+    else:
+        image_entries = manifest.get("images", [])
+        manifest_asset_base = manifest.get("asset_base", "")
+else:
+    if not source_dir.exists():
+        raise FileNotFoundError("Could not locate photos directory or photos.json")
+    image_entries = [
+        {"file": p.name}
+        for p in sorted(source_dir.iterdir())
+        if p.is_file() and p.suffix.lower() in EXTS
+    ]
+
+asset_base = os.environ.get("PHOTO_ASSET_BASE", manifest_asset_base).strip()
+if asset_base:
+    asset_base = asset_base.rstrip("/") + "/"
 
 
 def as_page_relative(path):
+    try:
+        return path.relative_to(page_dir).as_posix()
+    except ValueError:
+        pass
+
     parts = path.as_posix().split("pages/Photos/", 1)
     if len(parts) == 2:
         return parts[1]
     return path.as_posix()
 
 
-images = sorted(
-    p for p in source_dir.iterdir() if p.is_file() and p.suffix.lower() in EXTS
-)
+def asset_url(path):
+    path = path.as_posix() if isinstance(path, Path) else str(path)
+    if path.startswith(("http://", "https://", "/")):
+        return path
+    return f"{asset_base}{path}"
+
 
 tiles = []
-for image in images:
-    web_image = web_dir / image.name
-    thumb_image = thumb_dir / image.name
+for entry in image_entries:
+    entry = {"file": entry} if isinstance(entry, str) else entry
+    filename = entry["file"]
 
-    full = web_image if web_image.exists() else image
-    preview = thumb_image if thumb_image.exists() else full
+    image = source_dir / filename
+    web_image = web_dir / filename
+    thumb_image = thumb_dir / filename
 
-    alt = image.stem.replace("_", " ").strip()
-    preview_path = as_page_relative(preview)
-    full_path = as_page_relative(full)
+    full = Path("photography_derived/web") / filename
+    preview = Path("photography_derived/thumbs") / filename
+
+    if web_image.exists():
+        full = as_page_relative(web_image)
+    elif image.exists():
+        full = as_page_relative(image)
+
+    if thumb_image.exists():
+        preview = as_page_relative(thumb_image)
+    elif web_image.exists():
+        preview = as_page_relative(web_image)
+    elif image.exists():
+        preview = as_page_relative(image)
+
+    alt = entry.get("title", Path(filename).stem.replace("_", " ").strip())
+    title = alt.replace('"', "&quot;")
+    preview_path = asset_url(preview)
+    full_path = asset_url(full)
 
     tiles.append(
-        f'[![]({preview_path})]({full_path}){{.lightbox group=\"photo-gallery\" title=\"{alt}\"}}'
+        f'[![]({preview_path})]({full_path}){{.lightbox group=\"photo-gallery\" title=\"{title}\"}}'
     )
 
 print("\n\n".join(tiles))

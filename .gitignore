@@ -2,9 +2,14 @@
 /.quarto/
 /docs/
 /index_files/
+/README.html
 **/*.quarto_ipynb
 **/*_files/
 **/index_files/
+
+# Large media kept on the deployment host or in an external archive
+/pages/Photos/photography/
+/pages/Photos/photography_derived/
 
 # macOS
 .DS_Store

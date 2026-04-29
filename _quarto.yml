@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - files/js/site-hooks.js
 
 # Meta
 description-meta: "Andrew Ortegaray's Personal Website"
