@@ -2,12 +2,12 @@
   institution: "UC Santa Barbara"
   course_code: "MA4B"
   title: "Differential Equations"
-  status: "current"
+  status: "archive"
   links:
     - label: "Course Syllabus"
-      href: "course_materials/w26_ma4b/w26_ma4b_syllabus.pdf"
+      href: "course_materials/w25_ma4b/w25_ma4b_syllabus.pdf"
     - label: "Course Files"
-      href: "course_materials/w26_ma4b/w26_ma4b_archive.zip"
+      href: "course_materials/w25_ma4b/w25_ma4b_archive.zip"
 
 - term: "Fall 25/26"
   institution: "UC Santa Barbara"
@@ -17,6 +17,8 @@
   links:
     - label: "Course Syllabus"
       href: "course_materials/f25_ma6b/f25_ma6b_syllabus.pdf"
+    - label: "Course Files"
+      href: "course_materials/f25_ma6b/f25_ma6b_archive.zip"
 
 - term: "Summer 24/25"
   institution: "UC Santa Barbara"
@@ -26,27 +28,41 @@
   links:
     - label: "Course Syllabus"
       href: "course_materials/su25_ma6b/su25_ma6b_syllabus.pdf"
+    - label: "Course Files"
+      href: "course_materials/su25_ma6b/su25_ma6b_archive.zip"
 
 - term: "Spring 24/25"
   institution: "UC Santa Barbara"
   course_code: "MA34B"
   title: "Calculus for Social Sciences II"
   status: "archive"
-  links: []
+  links:
+    - label: "Course Syllabus"
+      href: "course_materials/s25_ma34b/s25_ma34b_syllabus.pdf"
+    - label: "Course Files"
+      href: "course_materials/s25_ma34b/s25_ma34b_archive.zip"
 
 - term: "Winter 24/25"
   institution: "UC Santa Barbara"
   course_code: "MA3B"
   title: "Calculus with Applications II"
   status: "archive"
-  links: []
+  links:
+    - label: "Course Syllabus"
+      href: "course_materials/w24_ma3b/w24_ma3b_syllabus.pdf"
+    - label: "Course Files"
+      href: "course_materials/w24_ma3b/w24_ma3b_archive.zip"
 
 - term: "Fall 24/25"
   institution: "UC Santa Barbara"
   course_code: "MA3A"
   title: "Calculus with Applications I"
   status: "archive"
-  links: []
+  links:
+    - label: "Course Syllabus"
+      href: "course_materials/f24_ma3a/f24_ma3a_syllabus.pdf"
+    - label: "Course Files"
+      href: "course_materials/f24_ma3a/f24_ma3a_archive.zip"
 
 - term: "Fall 19/20"
   institution: "Caltech"

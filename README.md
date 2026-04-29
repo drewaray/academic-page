@@ -26,7 +26,7 @@ Deploy routine text/layout updates to the UCSB server:
 
 ```bash
 ./scripts/deploy-site.sh \
-  ortegaray@web.math.ucsb.edu:/home/grad/ortegaray/public_html/
+  ucsb-web:/home/grad/ortegaray/public_html/
 ```
 
 Deploy after adding or changing photos:
@@ -34,7 +34,7 @@ Deploy after adding or changing photos:
 ```bash
 ./scripts/optimize-photos.sh
 DEPLOY_INCLUDE_PHOTOS=1 ./scripts/deploy-site.sh \
-  ortegaray@web.math.ucsb.edu:/home/grad/ortegaray/public_html/
+  ucsb-web:/home/grad/ortegaray/public_html/
 ```
 
 Do not use an `http://` URL as the deploy target. `rsync` needs an SSH path in this form:
@@ -213,7 +213,7 @@ That makes the rendered gallery point at the existing photo assets on the live s
 
 ```bash
 DEPLOY_INCLUDE_PHOTOS=1 ./scripts/deploy-site.sh \
-  ortegaray@web.math.ucsb.edu:/home/grad/ortegaray/public_html/
+  ucsb-web:/home/grad/ortegaray/public_html/
 ```
 
 After the remote photo folders are uploaded, local originals can live outside this working checkout if you want to keep the repo lightweight.
@@ -224,7 +224,7 @@ The deploy script renders the site and then syncs `docs/` to the server:
 
 ```bash
 ./scripts/deploy-site.sh \
-  ortegaray@web.math.ucsb.edu:/home/grad/ortegaray/public_html/
+  ucsb-web:/home/grad/ortegaray/public_html/
 ```
 
 By default, it:
@@ -246,10 +246,42 @@ To use a specific SSH identity:
 ```bash
 DEPLOY_RSYNC_RSH='ssh -i ~/.ssh/YOUR_KEY -o IdentitiesOnly=yes' \
   ./scripts/deploy-site.sh \
-  ortegaray@web.math.ucsb.edu:/home/grad/ortegaray/public_html/
+  ucsb-web:/home/grad/ortegaray/public_html/
 ```
 
 If SSH reports `Too many authentication failures`, keep `IdentitiesOnly=yes` or specify the exact key as above.
+
+### SSH Alias
+
+The local machine is configured with this SSH alias in `~/.ssh/config`:
+
+```sshconfig
+Host ucsb-web
+  HostName web.math.ucsb.edu
+  User ortegaray
+  IdentityFile ~/.ssh/ucsb_web_math
+  IdentitiesOnly yes
+  AddKeysToAgent yes
+  UseKeychain yes
+```
+
+If the key passphrase is not in the macOS Keychain, add it once:
+
+```bash
+ssh-add --apple-use-keychain ~/.ssh/ucsb_web_math
+```
+
+Then confirm the alias works:
+
+```bash
+ssh -o BatchMode=yes ucsb-web true
+```
+
+If you are on another machine without this alias, use the full SSH target:
+
+```text
+ortegaray@web.math.ucsb.edu:/home/grad/ortegaray/public_html/
+```
 
 ## Checks And Maintenance
 
@@ -326,7 +358,7 @@ ortegaray@http://web.math.ucsb.edu/home/grad/ortegaray/public_html
 Use this instead:
 
 ```text
-ortegaray@web.math.ucsb.edu:/home/grad/ortegaray/public_html/
+ucsb-web:/home/grad/ortegaray/public_html/
 ```
 
 ### SSH Authentication Fails
@@ -334,10 +366,20 @@ ortegaray@web.math.ucsb.edu:/home/grad/ortegaray/public_html/
 First confirm you can SSH manually:
 
 ```bash
-ssh -o IdentitiesOnly=yes ortegaray@web.math.ucsb.edu
+ssh ucsb-web
 ```
 
-Then rerun deploy from your terminal so you can respond to any password or two-factor prompts.
+If the key passphrase is missing from the macOS Keychain, add it:
+
+```bash
+ssh-add --apple-use-keychain ~/.ssh/ucsb_web_math
+```
+
+Then rerun the deploy:
+
+```bash
+./scripts/deploy-site.sh ucsb-web:/home/grad/ortegaray/public_html/
+```
 
 ### Checks Report Tracked Generated Artifacts
 

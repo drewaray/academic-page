@@ -6,6 +6,8 @@
 **/*.quarto_ipynb
 **/*_files/
 **/index_files/
+*-listing*.json
+*.feed-full-staged
 
 # Large media kept on the deployment host or in an external archive
 /pages/Photos/photography/

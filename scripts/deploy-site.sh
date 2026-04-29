@@ -16,6 +16,7 @@ Optional:
   PHOTO_ASSET_BASE=https://example.edu/~user/pages/Photos/ ./scripts/deploy-site.sh ...
   DEPLOY_INCLUDE_PHOTOS=1 ./scripts/deploy-site.sh ...
   DEPLOY_RSYNC_RSH='ssh -i ~/.ssh/key -o IdentitiesOnly=yes' ./scripts/deploy-site.sh ...
+  DEPLOY_SKIP_CLEAN=1 ./scripts/deploy-site.sh ...
 USAGE
   exit 2
 fi
@@ -78,4 +79,8 @@ if [[ "${DEPLOY_INCLUDE_PHOTOS:-0}" != "1" ]]; then
   rsync -az --delete --stats --chmod=u=rwX,go=rX -e "$RSYNC_RSH" "${photo_excludes[@]}" docs/ "$TARGET"
 else
   rsync -az --delete --stats --chmod=u=rwX,go=rX -e "$RSYNC_RSH" docs/ "$TARGET"
+fi
+
+if [[ "${DEPLOY_SKIP_CLEAN:-0}" != "1" ]]; then
+  ./scripts/clean-generated.sh --apply
 fi

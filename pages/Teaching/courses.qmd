@@ -9,7 +9,15 @@ execute:
 
 Below are the courses I have taught over the years and material related to courses I'm currently teaching. Links to course materials are provided when available.
 
-# For Current Students
+## Contact & Support
+**Office Hours (Spring 25-26)**: By appointment. Please email me to schedule a time to meet.
+<!-- **Office Hours (Spring 25-26 Quarter)**: Tue 2-3 PM &nbsp; | &nbsp; **Location**: SH 6431 $\mathbb{N}$ -->
+<!-- Students are encouraged to attend office hours or schedule appointments for additional support. -->
+
+---
+
+
+# Current Courses
 
 ```{python}
 from pathlib import Path
@@ -77,14 +85,8 @@ lines.append("</div>")
 Markdown("\n".join(lines))
 ```
 
-## Contact & Support
-**Office Hours (W 25-26 Quarter)**: Tue 2-3 PM &nbsp; | &nbsp; **Location**: SH 6431 $\mathbb{N}$
 
-Students are encouraged to attend office hours or schedule appointments for additional support.
-
----
-
-# Course Archive
+# Archived Courses
 
 ```{python}
 from collections import OrderedDict
