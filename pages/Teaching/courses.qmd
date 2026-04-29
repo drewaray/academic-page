@@ -52,6 +52,13 @@ def render_course_title(course):
     return course_text
 
 
+def file_badge(href):
+    suffix = Path(href).suffix.lower().lstrip(".")
+    if suffix in {"pdf", "zip"}:
+        return f'<span class="file-badge file-badge-{suffix}">{suffix.upper()}</span>'
+    return ""
+
+
 def render_links(links):
     rendered = []
     for link in links or []:
@@ -60,13 +67,16 @@ def render_links(links):
         if not href or href == "#":
             rendered.append(label)
         else:
-            rendered.append(f'<a href="{escape(href)}">{label}</a>')
+            rendered.append(
+                f'<a class="course-link" href="{escape(href)}">{label}{file_badge(href)}</a>'
+            )
     return " | ".join(rendered)
 
 
 current_courses = [c for c in courses if str(c.get("status", "")).lower() == "current"]
 
-lines = ['<div class="teaching-list teaching-section">']
+lines = ['<div class="course-section course-section-current">']
+lines.append('<div class="teaching-list teaching-section">')
 for course in current_courses:
     term = escape(course.get("term", ""))
     title_html = render_course_title(course)
@@ -80,6 +90,9 @@ for course in current_courses:
         lines.append(f'<div class="course-meta">{links_html}</div>')
     lines.append("</div>")
     lines.append("</li>")
+if not current_courses:
+    lines.append('<li class="course-empty">No current courses listed.</li>')
+lines.append("</div>")
 lines.append("</div>")
 
 Markdown("\n".join(lines))
@@ -126,6 +139,13 @@ def render_course_title(course):
     return course_text
 
 
+def file_badge(href):
+    suffix = Path(href).suffix.lower().lstrip(".")
+    if suffix in {"pdf", "zip"}:
+        return f'<span class="file-badge file-badge-{suffix}">{suffix.upper()}</span>'
+    return ""
+
+
 def render_links(links):
     rendered = []
     for link in links or []:
@@ -134,7 +154,9 @@ def render_links(links):
         if not href or href == "#":
             rendered.append(label)
         else:
-            rendered.append(f'<a href="{escape(href)}">{label}</a>')
+            rendered.append(
+                f'<a class="course-link" href="{escape(href)}">{label}{file_badge(href)}</a>'
+            )
     return " | ".join(rendered)
 
 
@@ -148,7 +170,7 @@ lines = []
 for institution, entries in by_institution.items():
     institution_slug = slugify(institution)
     lines.append(f'### {escape(institution)} {{#{institution_slug}}}')
-    lines.append('<div class="teaching-container">')
+    lines.append('<div class="teaching-container course-section course-section-archive">')
     lines.append('<div class="teaching-list teaching-section">')
 
     for course in entries:

@@ -182,9 +182,144 @@
     window.__photoLightboxInitialized = true;
   }
 
+  function initBlogPostNav() {
+    var postPathMatch = window.location.pathname.match(/\/pages\/Math\/blog\/posts\/([^/]+)\/(?:index\.html)?$/);
+    if (!postPathMatch || document.querySelector(".post-nav")) {
+      return;
+    }
+
+    var sitePrefix = window.location.pathname.split("/pages/Math/blog/posts/")[0];
+    var posts = [
+      {
+        slug: "2026-02-26-repeated-roots",
+        title: "Repeated Roots in ODEs",
+        href: sitePrefix + "/pages/Math/blog/posts/2026-02-26-repeated-roots/"
+      },
+      {
+        slug: "2025-12-25-square-roots",
+        title: "Square Roots and Where to Find Them",
+        href: sitePrefix + "/pages/Math/blog/posts/2025-12-25-square-roots/"
+      }
+    ];
+
+    var currentSlug = postPathMatch[1];
+    var index = posts.findIndex(function (post) {
+      return post.slug === currentSlug;
+    });
+    if (index === -1) {
+      return;
+    }
+
+    var nav = document.createElement("nav");
+    nav.className = "post-nav";
+    nav.setAttribute("aria-label", "Post navigation");
+
+    var newer = posts[index - 1];
+    var older = posts[index + 1];
+
+    if (newer) {
+      var newerLink = document.createElement("a");
+      newerLink.className = "post-nav-link post-nav-next";
+      newerLink.href = newer.href;
+      newerLink.innerHTML = '<span>Newer</span><strong>' + newer.title + '</strong>';
+      nav.appendChild(newerLink);
+    }
+
+    if (older) {
+      var olderLink = document.createElement("a");
+      olderLink.className = "post-nav-link post-nav-prev";
+      olderLink.href = older.href;
+      olderLink.innerHTML = '<span>Older</span><strong>' + older.title + '</strong>';
+      nav.appendChild(olderLink);
+    }
+
+    var main = document.getElementById("quarto-document-content");
+    if (main && nav.children.length) {
+      main.appendChild(nav);
+    }
+  }
+
+  function initBlogCategoryLinks() {
+    var postPathMatch = window.location.pathname.match(/\/pages\/Math\/blog\/posts\/([^/]+)\/(?:index\.html)?$/);
+    if (!postPathMatch) {
+      return;
+    }
+
+    var sitePrefix = window.location.pathname.split("/pages/Math/blog/posts/")[0];
+    var blogHref = sitePrefix + "/pages/Math/blog/blog.html";
+    var categories = document.querySelectorAll(".quarto-title .quarto-category");
+
+    categories.forEach(function (category) {
+      if (category.querySelector("a")) {
+        return;
+      }
+
+      var label = category.textContent.trim();
+      if (!label) {
+        return;
+      }
+
+      var link = document.createElement("a");
+      link.href = blogHref + "#category=" + encodeURIComponent(label);
+      link.textContent = label;
+      category.textContent = "";
+      category.appendChild(link);
+    });
+  }
+
+  function initHomepageRecentPostBadges() {
+    var listing = document.getElementById("listing-recent-posts");
+    if (!listing) {
+      return;
+    }
+
+    var maxBadges = 3;
+    var items = listing.querySelectorAll(".g-col-1[data-categories]");
+    items.forEach(function (item) {
+      var body = item.querySelector(".card-body");
+      var title = item.querySelector(".listing-title");
+      if (!body || !title || body.querySelector(".recent-post-badges")) {
+        return;
+      }
+
+      var rawCategories = item.getAttribute("data-categories") || "";
+      var categories = [];
+      try {
+        categories = decodeURIComponent(window.atob(rawCategories)).split(",");
+      } catch (error) {
+        categories = [];
+      }
+
+      var normalized = categories
+        .map(function (category) {
+          return category.trim();
+        })
+        .filter(Boolean)
+        .slice(0, maxBadges);
+
+      if (!normalized.length) {
+        return;
+      }
+
+      var badges = document.createElement("div");
+      badges.className = "recent-post-badges";
+      normalized.forEach(function (category) {
+        var badge = document.createElement("span");
+        badge.className = "recent-post-badge";
+        badge.textContent = category.toUpperCase();
+        badges.appendChild(badge);
+      });
+
+      body.insertBefore(badges, title);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     embedWolframNotebooks();
     initResourcesTable();
     initPhotoLightbox();
+    initBlogPostNav();
+    initBlogCategoryLinks();
+    initHomepageRecentPostBadges();
   });
 })();

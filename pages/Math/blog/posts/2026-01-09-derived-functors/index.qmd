@@ -8,8 +8,8 @@ draft: true
 ---
 
 ::: {.post-meta}
-**Reading time:** {{< meta read_time >}}  
-**Math content:** {{< meta math_count >}}
+<span><strong>Reading time:</strong> {{< meta read_time >}}</span>
+<span><strong>Math content:</strong> {{< meta math_count >}}</span>
 :::
 
 This isn't going to be some deep philosophical take on what derived functors are or what they should be. No, genuinely the question will be *Do I know what derived functors are?*

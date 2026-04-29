@@ -10,8 +10,8 @@ draft: false
 ---
 
 ::: {.post-meta}
-**Reading time:** {{< meta read_time >}}  
-**Math content:** {{< meta math_count >}}
+<span><strong>Reading time:</strong> {{< meta read_time >}}</span>
+<span><strong>Math content:</strong> {{< meta math_count >}}</span>
 :::
 
 

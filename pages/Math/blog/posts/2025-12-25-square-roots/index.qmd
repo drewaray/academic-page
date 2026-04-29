@@ -10,8 +10,8 @@ image: "method_comparison.png"
 ---
 
 ::: {.post-meta}
-**Reading time:** {{< meta read_time >}}  
-**Math content:** {{< meta math_count >}}
+<span><strong>Reading time:</strong> {{< meta read_time >}}</span>
+<span><strong>Math content:</strong> {{< meta math_count >}}</span>
 :::
 
 First post of the blog, woo! I thought it would be nice to have a warm-up post about something fun, but also that I haven't seen mentioned much (maybe for good reason). The goal of today's post is to show how to compute square roots **exactly** by hand, digit-by-digit, no funny business. It looks something like this:

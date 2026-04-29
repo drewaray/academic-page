@@ -16,7 +16,7 @@ listing:
 #      categories: [] 
 
 page-layout: article
-draft-mode: unlinked
+draft-mode: gone
 page-navigation: false
 title-block-banner: false
 ---

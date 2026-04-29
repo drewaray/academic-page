@@ -92,6 +92,23 @@ fi
 
 rsync -az --delete --stats --chmod=u=rwX,go=rX -e "$RSYNC_RSH" "${rsync_excludes[@]}" docs/ "$TARGET"
 
+echo
+echo "Deploy preservation summary:"
+if [[ "${DEPLOY_INCLUDE_PHOTOS:-0}" != "1" ]]; then
+  echo "  remote photos preserved"
+else
+  echo "  remote photos synced from local checkout"
+fi
+
+if [[ "${DEPLOY_INCLUDE_COURSE_ARCHIVES:-0}" != "1" ]]; then
+  echo "  remote course archives preserved"
+else
+  echo "  remote course archives synced from local checkout"
+fi
+
 if [[ "${DEPLOY_SKIP_CLEAN:-0}" != "1" ]]; then
   ./scripts/clean-generated.sh --apply
+  echo "  generated files cleaned"
+else
+  echo "  generated files retained"
 fi

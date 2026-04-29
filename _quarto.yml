@@ -24,7 +24,7 @@ website:
   site-url: "https://web.math.ucsb.edu/~ortegaray/"
   reader-mode: true
 
-  draft-mode: unlinked
+  draft-mode: gone
   
   open-graph: true
 

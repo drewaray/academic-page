@@ -10,13 +10,13 @@ if [[ "${1:-}" == "--skip-render" ]]; then
 fi
 
 if [[ "$SKIP_RENDER" == "true" ]]; then
-  echo "[1/4] Skipping render (--skip-render)"
+  echo "[1/5] Skipping render (--skip-render)"
 else
-  echo "[1/4] Rendering site"
+  echo "[1/5] Rendering site"
   quarto render --to html
 fi
 
-echo "[2/4] Checking tracked generated artifacts"
+echo "[2/5] Checking tracked generated artifacts"
 tracked_generated="$(
   git ls-files | rg '(_files/|\\.quarto_ipynb$|index_files/)' | while IFS= read -r file; do
     if [[ -e "$file" ]]; then
@@ -30,14 +30,66 @@ if [[ -n "$tracked_generated" ]]; then
   exit 1
 fi
 
-echo "[3/4] Checking placeholder links"
+echo "[3/5] Checking placeholder links"
 placeholder_links="$(rg -n '\]\(#\)' pages index.qmd || true)"
 if [[ -n "$placeholder_links" ]]; then
   echo "Warning: placeholder links found:" >&2
   echo "$placeholder_links" >&2
 fi
 
-echo "[4/4] Checking missing local assets"
+echo "[4/5] Validating teaching data"
+python3 - <<'PY'
+from pathlib import Path
+import sys
+import yaml
+
+ROOT = Path.cwd()
+course_file = ROOT / "pages/Teaching/data/courses.yml"
+allowed_statuses = {"current", "archive"}
+errors = []
+
+with course_file.open(encoding="utf-8") as fh:
+    courses = yaml.safe_load(fh) or []
+
+for index, course in enumerate(courses, start=1):
+    label = f"course #{index}"
+    code = str(course.get("course_code", "")).strip()
+    term = str(course.get("term", "")).strip()
+    if code or term:
+        label = f"{term} {code}".strip()
+
+    status = str(course.get("status", "")).strip().lower()
+    if status not in allowed_statuses:
+        errors.append(
+            f"{label}: status must be one of {sorted(allowed_statuses)}, got {course.get('status')!r}"
+        )
+
+    links = course.get("links", [])
+    if links is None:
+        links = []
+    if not isinstance(links, list):
+        errors.append(f"{label}: links must be a list")
+        continue
+
+    for link_index, link in enumerate(links, start=1):
+        if not isinstance(link, dict):
+            errors.append(f"{label}: link #{link_index} must be a mapping")
+            continue
+        if not str(link.get("label", "")).strip():
+            errors.append(f"{label}: link #{link_index} is missing a label")
+        if not str(link.get("href", "")).strip():
+            errors.append(f"{label}: link #{link_index} is missing an href")
+
+if errors:
+    print("Teaching data validation failed:", file=sys.stderr)
+    for error in errors:
+        print(f"  {error}", file=sys.stderr)
+    raise SystemExit(1)
+
+print("Teaching data looks valid.")
+PY
+
+echo "[5/5] Checking missing local assets"
 python3 - <<'PY'
 import re
 from pathlib import Path
